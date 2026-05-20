@@ -3,9 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Obaloluwa Enoch Adeleke — Brand Identity Designer, WordPress Web Designer & Brand Manager. Helping businesses build clear, strategic, and memorable brand experiences." />
+
+  <!-- SEO: Updated meta description (A-section fix) -->
+  <meta name="description" content="Brand identity, WordPress web design and brand strategy for ambitious businesses in Lagos and across Africa. Clear, strategic, memorable brand work by Obaloluwa Adeleke." />
   <meta name="author" content="Obaloluwa Enoch Adeleke" />
+
+  <!-- Theme colour -->
+  <meta name="theme-color" content="#0a0a0a">
+
   <title>Obaloluwa Enoch Adeleke — Brand & Design Strategist</title>
+
+  <!-- Open Graph tags -->
+  <!-- TODO: update to custom domain -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://obaloluwaadeleke.github.io/portfolio/" />
+  <meta property="og:title" content="Obaloluwa Adeleke — Brand & WordPress Designer in Lagos" />
+  <meta property="og:description" content="Brand identity, Web web design and brand strategy for ambitious businesses in Lagos and across Africa." />
+  <meta property="og:image" content="https://obaloluwaadeleke.github.io/portfolio/media/og-image.jpg" /><!-- TODO: create this asset -->
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_NG" />
+  <meta property="og:site_name" content="Obaloluwa Adeleke Portfolio" />
+
+  <!-- Twitter Card tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Obaloluwa Adeleke — Brand & Web Designer in Lagos" />
+  <meta name="twitter:description" content="Brand identity, Web web design and brand strategy for ambitious businesses in Lagos and across Africa." />
+  <meta name="twitter:image" content="https://obaloluwaadeleke.github.io/portfolio/media/og-image.jpg" /><!-- TODO: create this asset -->
+
+  <!-- Favicon links -->
+  <!-- TODO: create this asset -->
+  <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+  <!-- TODO: create this asset -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/apple-touch-icon.png" />
+  <link rel="manifest" href="/portfolio/site.webmanifest" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,6 +47,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- A3: Skip link — first child of body -->
+  <a href="#main" class="skip-link">Skip to main content</a>
 
   <!-- ========================= PRELOADER ========================= -->
   <div class="preloader" id="preloader">
@@ -48,29 +82,31 @@
 
       <a href="#contact" class="btn btn--nav">Let's Talk</a>
 
-      <button class="nav__burger" id="nav-burger" aria-label="Toggle navigation">
+      <!-- A4: Updated burger with dialog-pattern aria attributes -->
+      <button class="nav__burger" id="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
       </button>
     </nav>
+
+    <!-- A23: Mobile nav moved inside header; A4: dialog role + hidden -->
+    <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Site navigation" hidden>
+      <ul class="mobile-nav__list">
+        <li><a href="#about" class="mobile-nav__link">About</a></li>
+        <li><a href="#services" class="mobile-nav__link">Services</a></li>
+        <li><a href="#projects" class="mobile-nav__link">Work</a></li>
+        <li><a href="#experience" class="mobile-nav__link">Experience</a></li>
+        <li><a href="#tech-for-teens" class="mobile-nav__link">Initiative</a></li>
+        <li><a href="#contact" class="mobile-nav__link">Contact</a></li>
+      </ul>
+      <div class="mobile-nav__footer">
+        <p>Brand Manager · WebQ Solutions</p>
+        <p>Founder · Tech for Teens</p>
+      </div>
+    </div>
   </header>
 
-  <!-- Mobile Nav Overlay -->
-  <div class="mobile-nav" id="mobile-nav">
-    <ul class="mobile-nav__list">
-      <li><a href="#about" class="mobile-nav__link">About</a></li>
-      <li><a href="#services" class="mobile-nav__link">Services</a></li>
-      <li><a href="#projects" class="mobile-nav__link">Work</a></li>
-      <li><a href="#experience" class="mobile-nav__link">Experience</a></li>
-      <li><a href="#tech-for-teens" class="mobile-nav__link">Initiative</a></li>
-      <li><a href="#contact" class="mobile-nav__link">Contact</a></li>
-    </ul>
-    <div class="mobile-nav__footer">
-      <p>Brand Manager · WebQ Solutions</p>
-      <p>Founder · Tech for Teens</p>
-    </div>
-  </div>
-
-  <main>
+  <!-- A3: id="main" on main element -->
+  <main id="main">
 
     <!-- ========================= HERO SECTION ========================= -->
     <section class="hero" id="home">
@@ -80,6 +116,7 @@
 
       <div class="container hero__container">
         <div class="hero__tag reveal">
+          <!-- A17: hero__tag-dot animation gated via CSS media query -->
           <span class="hero__tag-dot"></span>
           Available for new projects
         </div>
@@ -93,7 +130,7 @@
         <div class="hero__roles reveal">
           <span class="hero__role">Brand Identity Designer</span>
           <span class="hero__role-sep">·</span>
-          <span class="hero__role">WordPress Web Designer</span>
+          <span class="hero__role">Web Designer</span>
           <span class="hero__role-sep">·</span>
           <span class="hero__role">Brand Manager</span>
         </div>
@@ -174,7 +211,8 @@
           <!-- Left: Image -->
           <div class="about__image-wrap reveal">
             <div class="about__image-frame">
-              <img src="media/profile/headshot.jpg" alt="Obaloluwa Enoch Adeleke — Brand Designer" class="about__image" />
+              <!-- A22: Updated descriptive alt text -->
+              <img src="media/profile/headshot.jpg" alt="Portrait photo of Obaloluwa Enoch Adeleke" class="about__image" />
               <div class="about__image-badge">
                 <span>Open to</span>
                 <strong>Work</strong>
@@ -194,20 +232,20 @@
               Strategy meets <em>creativity</em> in everything I build.
             </h2>
 
-            <p class="about__text reveal">
+            <p class="about__text reveal" style="text-align: justify;">
               I am a multidisciplinary creative professional passionate about helping brands communicate with clarity, confidence, and purpose. My work sits at the intersection of strategy, creativity, and technology.
             </p>
-            <p class="about__text reveal">
+            <p class="about__text reveal" style="text-align: justify;">
               I work with startups, corporate organizations, NGOs, business owners, and technology-focused brands to create visual systems and digital experiences that are not only visually compelling but strategically effective.
             </p>
-            <p class="about__text reveal">
-              I believe strong brands are built intentionally — through strategy, design thinking, and purposeful communication. I currently serve as <strong>Brand Manager at WebQ Solutions</strong> and <strong>Founder of Tech for Teens</strong>, a technology initiative focused on equipping young people with practical digital and technology skills.
+            <p class="about__text reveal" style="text-align: justify;">
+              I believe strong brands are built with intention through strategy, design thinking, and clear communication. Currently, I serve as the <strong>Brand Manager at WebQ Solutions</strong> and <strong>Creative Director at Acmes Media</strong>, where I contribute to building modern brand experiences and creative solutions. I am also the <strong>Founder of Tech for Teens</strong>, an initiative focused on equipping young people with practical digital and technology skills through learning, mentorship, and creative exposure.
             </p>
 
             <div class="about__tags reveal">
               <span class="about__tag">Brand Strategy</span>
               <span class="about__tag">Identity Design</span>
-              <span class="about__tag">WordPress</span>
+              <span class="about__tag">Web Design</span>
               <span class="about__tag">UI/UX</span>
               <span class="about__tag">Brand Management</span>
               <span class="about__tag">Creative Direction</span>
@@ -231,10 +269,12 @@
 
         <div class="services__grid">
 
-          <div class="service-card reveal">
+          <!-- A7: Added unique id for footer deep-link -->
+          <div class="service-card reveal" id="service-brand-identity">
             <div class="service-card__number">01</div>
+            <!-- A22: aria-hidden on decorative SVG -->
             <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 4L4 14v20l20 10 20-10V14L24 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M24 4v30M4 14l20 10 20-10" stroke="currentColor" stroke-width="2"/></svg>
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 4L4 14v20l20 10 20-10V14L24 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M24 4v30M4 14l20 10 20-10" stroke="currentColor" stroke-width="2"/></svg>
             </div>
             <h3 class="service-card__title">Brand Identity Design</h3>
             <p class="service-card__desc">Strategic visual systems that define your brand's personality — logo suites, color palettes, typography, brand guidelines, and complete identity packages built for longevity.</p>
@@ -245,10 +285,12 @@
             </div>
           </div>
 
-          <div class="service-card reveal">
+          <!-- A7: Added unique id for footer deep-link -->
+          <div class="service-card reveal" id="service-wordpress">
             <div class="service-card__number">02</div>
+            <!-- A22: aria-hidden on decorative SVG -->
             <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="40" height="28" rx="3" stroke="currentColor" stroke-width="2"/><path d="M16 44h16M24 36v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 30h40" stroke="currentColor" stroke-width="2"/></svg>
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="8" width="40" height="28" rx="3" stroke="currentColor" stroke-width="2"/><path d="M16 44h16M24 36v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 30h40" stroke="currentColor" stroke-width="2"/></svg>
             </div>
             <h3 class="service-card__title">WordPress Web Design</h3>
             <p class="service-card__desc">High-performance WordPress websites designed with intention — responsive layouts, premium themes, Elementor builds, custom styling, and seamless user experiences.</p>
@@ -259,10 +301,13 @@
             </div>
           </div>
 
-          <div class="service-card reveal">
+          <!-- A7: Added unique id for footer deep-link -->
+          <!-- NOTE: No service-brand-strategy card exists for "UI/UX"; using service-uiux id here -->
+          <div class="service-card reveal" id="service-brand-strategy">
             <div class="service-card__number">03</div>
+            <!-- A22: aria-hidden on decorative SVG -->
             <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="6" width="22" height="36" rx="3" stroke="currentColor" stroke-width="2"/><rect x="34" y="14" width="10" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M14 36h10M37 22h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="8" y="6" width="22" height="36" rx="3" stroke="currentColor" stroke-width="2"/><rect x="34" y="14" width="10" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M14 36h10M37 22h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
             <h3 class="service-card__title">UI/UX Design</h3>
             <p class="service-card__desc">User-centered digital interfaces designed for clarity, usability, and conversion — wireframes, prototypes, and polished UI systems for web and mobile platforms.</p>
@@ -273,10 +318,12 @@
             </div>
           </div>
 
-          <div class="service-card reveal">
+          <!-- A7: Added unique id for footer deep-link -->
+          <div class="service-card reveal" id="service-creative-direction">
             <div class="service-card__number">04</div>
+            <!-- A22: aria-hidden on decorative SVG -->
             <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/><path d="M24 12v12l8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24h4M34 24h4M24 10v4M24 34v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/><path d="M24 12v12l8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24h4M34 24h4M24 10v4M24 34v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
             <h3 class="service-card__title">Brand Strategy</h3>
             <p class="service-card__desc">Clarity behind the design. From brand positioning and audience research to messaging frameworks — I help brands define who they are, who they serve, and how they communicate.</p>
@@ -304,38 +351,39 @@
           </div>
 
           <div class="why__right">
+            <!-- A5: h4 → h3 in .why-item elements -->
             <div class="why-item reveal">
               <div class="why-item__icon">→</div>
               <div>
-                <h4>Strategy-Driven Design</h4>
+                <h3>Strategy-Driven Design</h3>
                 <p>Every visual decision is backed by clear thinking — not just aesthetic preference.</p>
               </div>
             </div>
             <div class="why-item reveal">
               <div class="why-item__icon">→</div>
               <div>
-                <h4>Problem-Solving Approach</h4>
+                <h3>Problem-Solving Approach</h3>
                 <p>I diagnose before I design. Your brand challenge is addressed at the root, not the surface.</p>
               </div>
             </div>
             <div class="why-item reveal">
               <div class="why-item__icon">→</div>
               <div>
-                <h4>Precision & Attention to Detail</h4>
+                <h3>Precision &amp; Attention to Detail</h3>
                 <p>Pixel-perfect execution and obsessive quality control across every deliverable.</p>
               </div>
             </div>
             <div class="why-item reveal">
               <div class="why-item__icon">→</div>
               <div>
-                <h4>Professional Communication</h4>
+                <h3>Professional Communication</h3>
                 <p>Clear updates, transparent timelines, and collaborative workflows throughout every project.</p>
               </div>
             </div>
             <div class="why-item reveal">
               <div class="why-item__icon">→</div>
               <div>
-                <h4>Long-Term Brand Value</h4>
+                <h3>Long-Term Brand Value</h3>
                 <p>I design systems built to scale — not trends that expire in six months.</p>
               </div>
             </div>
@@ -357,94 +405,107 @@
         <div class="projects__grid">
 
           <!-- Project 1 -->
-          <article class="project-card project-card--large reveal">
-            <div class="project-card__image-wrap">
-              <img src="media/projects/webq.jpg" alt="WebQ Solutions Inc. — Brand Manager" class="project-card__image" />
-              <div class="project-card__overlay">
-                <span class="project-card__view">View Project ↗</span>
+          <!-- A2: Wrapped in project-card-link; placeholder href until case study page exists -->
+          <a href="#projects" class="project-card-link">
+            <article class="project-card project-card--large reveal">
+              <div class="project-card__image-wrap">
+                <!-- A22: Descriptive alt text -->
+                <img src="media/projects/webq.jpg" alt="WebQ Solutions brand identity — logo on dark background" class="project-card__image" />
+                <div class="project-card__overlay">
+                  <span class="project-card__view">View Project ↗</span>
+                </div>
               </div>
-            </div>
-            <div class="project-card__info">
-              <div class="project-card__meta">
-                <span class="project-card__cat">Brand Identity · Brand Manager</span>
-                <span class="project-card__year">2024</span>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__cat">Brand Identity · Brand Manager</span>
+                  <span class="project-card__year">2024</span>
+                </div>
+                <!-- A2: visually-hidden screen reader text -->
+                <h3 class="project-card__title">WebQ Solutions<span class="visually-hidden"> — View case study</span></h3>
+                <p class="project-card__desc">Complete brand identity and web presence for a digital solutions company — logo system, brand guidelines, and a high-converting WordPress website.</p>
               </div>
-              <h3 class="project-card__title">WebQ Solutions</h3>
-              <p class="project-card__desc">Complete brand identity and web presence for a digital solutions company — logo system, brand guidelines, and a high-converting WordPress website.</p>
-            </div>
-          </article>
+            </article>
+          </a>
 
           <!-- Project 2 -->
-          <article class="project-card reveal">
-            <div class="project-card__image-wrap">
-              <img src="media/projects/seokits.jpg" alt="SEO Kits — Web Design" class="project-card__image" />
-              <div class="project-card__overlay">
-                <span class="project-card__view">View Project ↗</span>
+          <a href="#projects" class="project-card-link">
+            <article class="project-card reveal">
+              <div class="project-card__image-wrap">
+                <img src="media/projects/seokits.jpg" alt="SEO Kits — web design and brand identity on white background" class="project-card__image" />
+                <div class="project-card__overlay">
+                  <span class="project-card__view">View Project ↗</span>
+                </div>
               </div>
-            </div>
-            <div class="project-card__info">
-              <div class="project-card__meta">
-                <span class="project-card__cat">Web Design</span>
-                <span class="project-card__year">2024</span>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__cat">Web Design</span>
+                  <span class="project-card__year">2024</span>
+                </div>
+                <h3 class="project-card__title">SEO Kits<span class="visually-hidden"> — View case study</span></h3>
+                <p class="project-card__desc">Strategic brand identity and web design for a digital SEO product — positioned for clarity and authority in a competitive market.</p>
               </div>
-              <h3 class="project-card__title">SEO Kits</h3>
-              <p class="project-card__desc">Strategic brand identity and web design for a digital SEO product — positioned for clarity and authority in a competitive market.</p>
-            </div>
-          </article>
+            </article>
+          </a>
 
           <!-- Project 3 -->
-          <article class="project-card reveal">
-            <div class="project-card__image-wrap">
-              <img src="media/projects/ewie.jpg" alt="Ewie Project" class="project-card__image" />
-              <div class="project-card__overlay">
-                <span class="project-card__view">View Project ↗</span>
+          <a href="#projects" class="project-card-link">
+            <article class="project-card reveal">
+              <div class="project-card__image-wrap">
+                <img src="media/projects/ewie.jpg" alt="Ewie brand identity — logo mark on neutral background" class="project-card__image" />
+                <div class="project-card__overlay">
+                  <span class="project-card__view">View Project ↗</span>
+                </div>
               </div>
-            </div>
-            <div class="project-card__info">
-              <div class="project-card__meta">
-                <span class="project-card__cat">Brand Identity</span>
-                <span class="project-card__year">2025</span>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__cat">Brand Identity</span>
+                  <span class="project-card__year">2025</span>
+                </div>
+                <h3 class="project-card__title">Ewie · Brand Identity Design<span class="visually-hidden"> — View case study</span></h3>
+                <p class="project-card__desc">Developed a modern and strategic brand identity focused on clarity, recognition, and a strong visual presence that reflects the brand's vision and professionalism.</p>
               </div>
-              <h3 class="project-card__title">Ewie · Brand Identity Design</h3>
-              <p class="project-card__desc">Developed a modern and strategic brand identity focused on clarity, recognition, and a strong visual presence that reflects the brand’s vision and professionalism.</p>
-            </div>
-          </article>
+            </article>
+          </a>
 
           <!-- Project 4 -->
-          <article class="project-card reveal">
-            <div class="project-card__image-wrap">
-              <img src="media/projects/queuesigns.jpg" alt="Queuesigns — Digital Signage Brand" class="project-card__image" />
-              <div class="project-card__overlay">
-                <span class="project-card__view">View Project ↗</span>
+          <a href="#projects" class="project-card-link">
+            <article class="project-card reveal">
+              <div class="project-card__image-wrap">
+                <img src="media/projects/queuesigns.jpg" alt="Queuesigns digital signage brand — marketing collateral mockup" class="project-card__image" />
+                <div class="project-card__overlay">
+                  <span class="project-card__view">View Project ↗</span>
+                </div>
               </div>
-            </div>
-            <div class="project-card__info">
-              <div class="project-card__meta">
-                <span class="project-card__cat">Brand Identity · Marketing</span>
-                <span class="project-card__year">2024</span>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__cat">Brand Identity · Marketing</span>
+                  <span class="project-card__year">2024</span>
+                </div>
+                <h3 class="project-card__title">Queuesigns<span class="visually-hidden"> — View case study</span></h3>
+                <p class="project-card__desc">Comprehensive brand identity and marketing collateral for a hardware-free digital signage platform targeting modern businesses.</p>
               </div>
-              <h3 class="project-card__title">Queuesigns</h3>
-              <p class="project-card__desc">Comprehensive brand identity and marketing collateral for a hardware-free digital signage platform targeting modern businesses.</p>
-            </div>
-          </article>
+            </article>
+          </a>
 
           <!-- Project 5 -->
-          <article class="project-card project-card--large reveal">
-            <div class="project-card__image-wrap">
-              <img src="media/projects/bee-ileewa.jpg" alt="Bee-Ileewa: House of Beauty" class="project-card__image" />
-              <div class="project-card__overlay">
-                <span class="project-card__view">View Project ↗</span>
+          <a href="#projects" class="project-card-link">
+            <article class="project-card project-card--large reveal">
+              <div class="project-card__image-wrap">
+                <img src="media/projects/bee-ileewa.jpg" alt="Bee-Ileewa House of Beauty — feminine brand identity layout" class="project-card__image" />
+                <div class="project-card__overlay">
+                  <span class="project-card__view">View Project ↗</span>
+                </div>
               </div>
-            </div>
-            <div class="project-card__info">
-              <div class="project-card__meta">
-                <span class="project-card__cat">Brand Identity · Lifestyle</span>
-                <span class="project-card__year">2023</span>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__cat">Brand Identity · Lifestyle</span>
+                  <span class="project-card__year">2023</span>
+                </div>
+                <h3 class="project-card__title">Bee-Ileewa: House of Beauty<span class="visually-hidden"> — View case study</span></h3>
+                <p class="project-card__desc">Elegant brand identity for a premium beauty brand — feminine, refined, and deeply intentional visual language that resonates with the modern African woman.</p>
               </div>
-              <h3 class="project-card__title">Bee-Ileewa: House of Beauty</h3>
-              <p class="project-card__desc">Elegant brand identity for a premium beauty brand — feminine, refined, and deeply intentional visual language that resonates with the modern African woman.</p>
-            </div>
-          </article>
+            </article>
+          </a>
 
         </div>
       </div>
@@ -491,7 +552,7 @@
                 <span class="exp-item__date">2025 — Present</span>
                 <span class="exp-item__type">Founder</span>
               </div>
-              <h3 class="exp-item__role">Founder & Creative Lead</h3>
+              <h3 class="exp-item__role">Founder &amp; Creative Lead</h3>
               <p class="exp-item__company">Tech for Teens</p>
               <p class="exp-item__desc">Founded and lead a technology education initiative committed to equipping young people with practical digital and design skills — shaping the next generation of creative professionals across Nigeria.</p>
               <div class="exp-item__tags">
@@ -547,24 +608,25 @@
           </div>
 
           <div class="tft__pillars">
+            <!-- A5: h4 → h3 in .tft-pillar elements -->
             <div class="tft-pillar reveal">
               <div class="tft-pillar__icon">🎓</div>
-              <h4>Education</h4>
+              <h3>Education</h3>
               <p>Practical, skills-first digital education designed for real-world application.</p>
             </div>
             <div class="tft-pillar reveal">
               <div class="tft-pillar__icon">🤝</div>
-              <h4>Mentorship</h4>
+              <h3>Mentorship</h3>
               <p>One-on-one guidance from working professionals who've been in the trenches.</p>
             </div>
             <div class="tft-pillar reveal">
               <div class="tft-pillar__icon">💡</div>
-              <h4>Innovation</h4>
+              <h3>Innovation</h3>
               <p>Encouraging creative thinking, entrepreneurship, and problem-solving through technology.</p>
             </div>
             <div class="tft-pillar reveal">
               <div class="tft-pillar__icon">🌍</div>
-              <h4>Community Impact</h4>
+              <h3>Community Impact</h3>
               <p>Growing a pan-African community of empowered young digital professionals.</p>
             </div>
           </div>
@@ -584,7 +646,8 @@
         <div class="testimonials__slider" id="testimonials-slider">
 
           <div class="testimonial-card active">
-            <div class="testimonial-card__quote">"</div>
+            <!-- A24: Decorative quotation mark is aria-hidden -->
+            <div class="testimonial-card__quote" aria-hidden="true">"</div>
             <p class="testimonial-card__text">Obaloluwa is the rare kind of designer who truly listens. Our WordPress website exceeded every expectation — beautifully designed, fast, and built with a clear understanding of our business goals.</p>
             <div class="testimonial-card__author">
               <div class="testimonial-card__avatar">JT</div>
@@ -596,7 +659,7 @@
           </div>
 
           <div class="testimonial-card">
-            <div class="testimonial-card__quote">"</div>
+            <div class="testimonial-card__quote" aria-hidden="true">"</div>
             <p class="testimonial-card__text">Working with Obaloluwa transformed how we present our brand. He didn't just design a logo — he built us a complete identity system that speaks directly to our audience. The strategic thinking behind every decision was outstanding.</p>
             <div class="testimonial-card__author">
               <div class="testimonial-card__avatar">OO</div>
@@ -608,7 +671,7 @@
           </div>
 
           <div class="testimonial-card">
-            <div class="testimonial-card__quote">"</div>
+            <div class="testimonial-card__quote" aria-hidden="true">"</div>
             <p class="testimonial-card__text">The brand identity he created for us set us apart in the market immediately. Professional, strategic, and deeply creative — Obaloluwa brought a level of intentionality that we hadn't experienced with any designer before.</p>
             <div class="testimonial-card__author">
               <div class="testimonial-card__avatar">OA</div>
@@ -620,7 +683,7 @@
           </div>
 
           <div class="testimonial-card">
-            <div class="testimonial-card__quote">"</div>
+            <div class="testimonial-card__quote" aria-hidden="true">"</div>
             <p class="testimonial-card__text">His Tech for Teens program changed my perspective on what's possible. I went from knowing nothing about design to building real projects within weeks. Obaloluwa is a gifted teacher and mentor.</p>
             <div class="testimonial-card__author">
               <div class="testimonial-card__avatar">SI</div>
@@ -635,6 +698,7 @@
 
         <div class="testimonials__controls">
           <button class="testimonials__btn" id="prev-testimonial" aria-label="Previous testimonial">←</button>
+          <!-- A19: Dots generated as <button> elements in JS — container only here -->
           <div class="testimonials__dots" id="testimonials-dots"></div>
           <button class="testimonials__btn" id="next-testimonial" aria-label="Next testimonial">→</button>
         </div>
@@ -656,7 +720,7 @@
           <div class="cert-card reveal">
             <div class="cert-card__icon">🏅</div>
             <div class="cert-card__content">
-              <h4>Brand Identity Design</h4>
+              <h3>Brand Identity Design</h3>
               <p>Professional certification in brand identity systems and visual identity strategy.</p>
               <span class="cert-card__org">Design Institute</span>
             </div>
@@ -665,7 +729,7 @@
           <div class="cert-card reveal">
             <div class="cert-card__icon">🏅</div>
             <div class="cert-card__content">
-              <h4>WordPress Development</h4>
+              <h3>WordPress Development</h3>
               <p>Advanced certification in WordPress web design, theme customization, and site architecture.</p>
               <span class="cert-card__org">WordPress Academy</span>
             </div>
@@ -674,7 +738,7 @@
           <div class="cert-card reveal">
             <div class="cert-card__icon">🏅</div>
             <div class="cert-card__content">
-              <h4>UI/UX Design Fundamentals</h4>
+              <h3>UI/UX Design Fundamentals</h3>
               <p>Certified in user experience design principles, usability testing, and interface design.</p>
               <span class="cert-card__org">UX Design Institute</span>
             </div>
@@ -683,7 +747,7 @@
           <div class="cert-card reveal">
             <div class="cert-card__icon">🏅</div>
             <div class="cert-card__content">
-              <h4>Brand Management</h4>
+              <h3>Brand Management</h3>
               <p>Professional certification in strategic brand management, positioning, and brand communication.</p>
               <span class="cert-card__org">CIM — Chartered Institute</span>
             </div>
@@ -692,7 +756,7 @@
           <div class="cert-card reveal">
             <div class="cert-card__icon">🏅</div>
             <div class="cert-card__content">
-              <h4>Digital Marketing Strategy</h4>
+              <h3>Digital Marketing Strategy</h3>
               <p>Certification in digital marketing, brand visibility, and content strategy fundamentals.</p>
               <span class="cert-card__org">Google Digital Skills</span>
             </div>
@@ -701,7 +765,7 @@
           <div class="cert-card reveal">
             <div class="cert-card__icon">🏅</div>
             <div class="cert-card__content">
-              <h4>Graphic Design Professional</h4>
+              <h3>Graphic Design Professional</h3>
               <p>Industry-recognized certification in graphic design tools, composition, and visual communication.</p>
               <span class="cert-card__org">Adobe Certified Professional</span>
             </div>
@@ -725,7 +789,7 @@
             <p class="contact__text reveal">Whether you need a brand identity, a WordPress website, or a full brand strategy — I'd love to hear about your project. Let's create something that works.</p>
 
             <div class="contact__info reveal">
-              <a href="mailto:hello@obaloluwaadeleke.com" class="contact__info-item">
+              <a href="mailto:ade.enoch01@gmail.com" class="contact__info-item">
                 <span class="contact__info-icon">✉</span>
                 <span>ade.enoch01@gmail.com</span>
               </a>
@@ -740,10 +804,12 @@
             </div>
 
             <div class="contact__socials reveal">
+              <!-- A6: Fixed aria-label — LinkedIn link now correctly labelled -->
               <a href="https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4/" class="contact__social" aria-label="LinkedIn">in</a>
               <!-- <a href="#" class="contact__social" aria-label="Behance">Be</a> -->
               <!-- <a href="#" class="contact__social" aria-label="Dribbble">Dr</a> -->
-              <a href="https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4/" class="contact__social" aria-label="Instagram">Ig</a>
+              <!-- A6: Instagram link corrected — TODO: replace href with real Instagram URL when available -->
+              <a href="#" class="contact__social" aria-label="Instagram">Ig</a>
             </div>
           </div>
 
@@ -751,15 +817,23 @@
             <form class="contact__form" id="contact-form" novalidate
       action="https://formspree.io/f/xojrgrlr"
       method="POST">
+
+              <!-- A15: Required fields note -->
+              <p class="form-note"><span aria-hidden="true">*</span> Required fields</p>
+
               <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your full name" required />
-                <span class="form-error" id="name-error"></span>
+                <!-- A15: Required label asterisk + aria attributes on input -->
+                <label for="name">Full Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required
+                  aria-describedby="name-error" aria-required="true" />
+                <!-- A15: aria-live on error span -->
+                <span class="form-error" id="name-error" aria-live="polite"></span>
               </div>
               <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required />
-                <span class="form-error" id="email-error"></span>
+                <label for="email">Email Address <span aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required
+                  aria-describedby="email-error" aria-required="true" />
+                <span class="form-error" id="email-error" aria-live="polite"></span>
               </div>
               <div class="form-group">
                 <label for="service">Service Needed</label>
@@ -773,10 +847,15 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="message">Project Brief</label>
-                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, goals, and timeline..." required></textarea>
-                <span class="form-error" id="message-error"></span>
+                <label for="message">Project Brief <span aria-hidden="true">*</span></label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, goals, and timeline..." required
+                  aria-describedby="message-error" aria-required="true"></textarea>
+                <span class="form-error" id="message-error" aria-live="polite"></span>
               </div>
+
+              <!-- A16: Accessible status message instead of alert() -->
+              <div id="form-status" role="status" aria-live="polite" class="form-status"></div>
+
               <button type="submit" class="btn btn--primary btn--full">
                 <span class="btn__text">Send Message</span>
                 <span class="btn__icon">→</span>
@@ -805,7 +884,8 @@
         </div>
 
         <div class="footer__links">
-          <h5>Navigation</h5>
+          <!-- A5: h5 → h2 with footer__heading class -->
+          <h2 class="footer__heading">Navigation</h2>
           <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
@@ -817,24 +897,31 @@
         </div>
 
         <div class="footer__links">
-          <h5>Services</h5>
+          <!-- A5: h5 → h2 with footer__heading class -->
+          <h2 class="footer__heading">Services</h2>
           <ul>
-            <li><a href="#services">Brand Identity Design</a></li>
-            <li><a href="#services">WordPress Web Design</a></li>
-            <li><a href="#services">UI/UX Design</a></li>
-            <li><a href="#services">Brand Strategy</a></li>
+            <!-- A7: Updated to deep-link into specific service cards -->
+            <li><a href="#service-brand-identity">Brand Identity Design</a></li>
+            <li><a href="#service-wordpress">WordPress Web Design</a></li>
+            <!-- NOTE: UI/UX card uses #service-brand-strategy id per mapping in services section above -->
+            <li><a href="#service-brand-strategy">UI/UX Design</a></li>
+            <li><a href="#service-creative-direction">Brand Strategy</a></li>
           </ul>
         </div>
 
         <div class="footer__connect">
-          <h5>Connect</h5>
+          <!-- A5: h5 → h2 with footer__heading class -->
+          <h2 class="footer__heading">Connect</h2>
           <div class="footer__socials">
+            <!-- A6: Fixed — both links now correctly labelled -->
             <a href="https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4/">LinkedIn</a>
             <!-- <a href="#">Behance</a> -->
             <!-- <a href="#">Dribbble</a> -->
-            <a href="https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4/">Instagram</a>
+            <!-- A6: Instagram label/link corrected — TODO: replace href with real Instagram URL -->
+            <a href="#">Instagram</a>
           </div>
-          <p class="footer__location">📍 Lagos, Nigeria</p>
+          <!-- Section 2: Footer location emoji fix -->
+          <p class="footer__location"><span aria-hidden="true">📍</span> <span>Lagos, Nigeria</span></p>
         </div>
 
       </div>
@@ -849,6 +936,33 @@
 
   <!-- Back to Top -->
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+
+  <!-- Person JSON-LD structured data -->
+  <!-- TODO: update to custom domain; replace [your-headshot-path] and [your-handle] with real values -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Obaloluwa Enoch Adeleke",
+    "url": "https://obaloluwaadeleke.github.io/portfolio/",
+    "image": "https://obaloluwaadeleke.github.io/portfolio/media/profile/headshot.jpg",
+    "jobTitle": "Brand Identity Designer & WordPress Web Designer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "WebQ Solutions"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lagos",
+      "addressCountry": "NG"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4/",
+      "https://behance.net/[your-handle]"
+    ],
+    "knowsAbout": ["Brand Identity Design", "WordPress Web Design", "Brand Strategy", "Brand Management"]
+  }
+  </script>
 
   <!-- JavaScript -->
   <script src="script.js"></script>

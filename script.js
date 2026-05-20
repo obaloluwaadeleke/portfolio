@@ -33,12 +33,19 @@ const initPreloader = () => {
   const preloader = $('#preloader');
   if (!preloader) return;
 
-  // Hide preloader after page loads + fill animation completes (~1.9s)
+  // A17: If user prefers reduced motion, skip preloader entirely
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    preloader.style.display = 'none';
+    document.body.style.overflow = '';
+    return;
+  }
+
+  // Section 2: Preloader duration capped at 600ms maximum
   window.addEventListener('load', () => {
     setTimeout(() => {
       preloader.classList.add('loaded');
       document.body.style.overflow = '';
-    }, 1900);
+    }, 600);
   });
 
   // Prevent scroll during preload
@@ -132,6 +139,7 @@ const initNavbar = () => {
 
 // =========================
 // MOBILE NAVIGATION
+// A4: Dialog pattern with focus trap, aria-expanded, Escape key
 // =========================
 
 const initMobileNav = () => {
@@ -140,18 +148,64 @@ const initMobileNav = () => {
   const mobileLinks = $$('.mobile-nav__link');
   if (!burger || !mobileNav) return;
 
+  let previouslyFocusedElement = null;
+
+  // Returns all focusable elements inside the nav
+  const getFocusableElements = () => {
+    return Array.from(
+      mobileNav.querySelectorAll(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => !el.hasAttribute('disabled'));
+  };
+
+  // Focus trap handler
+  const handleTrapFocus = (e) => {
+    if (e.key !== 'Tab') return;
+    const focusable = getFocusableElements();
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  };
+
   const openNav = () => {
-    burger.classList.add('open');
+    previouslyFocusedElement = document.activeElement;
+    mobileNav.removeAttribute('hidden');
     mobileNav.classList.add('open');
     document.body.style.overflow = 'hidden';
     burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Close menu');
+    burger.classList.add('open');
+    // Focus first focusable element inside dialog
+    const focusable = getFocusableElements();
+    if (focusable.length) focusable[0].focus();
+    mobileNav.addEventListener('keydown', handleTrapFocus);
   };
 
   const closeNav = () => {
-    burger.classList.remove('open');
     mobileNav.classList.remove('open');
     document.body.style.overflow = '';
     burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Open menu');
+    burger.classList.remove('open');
+    mobileNav.removeEventListener('keydown', handleTrapFocus);
+    // Restore focus to burger after a brief delay for transition
+    requestAnimationFrame(() => {
+      mobileNav.setAttribute('hidden', '');
+      if (previouslyFocusedElement) previouslyFocusedElement.focus();
+    });
   };
 
   burger.addEventListener('click', () => {
@@ -166,7 +220,7 @@ const initMobileNav = () => {
 
   // Close on Escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeNav();
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
   });
 };
 
@@ -287,8 +341,17 @@ const initCounters = () => {
   const counters = $$('[data-count]');
   if (!counters.length) return;
 
+  // A17: If reduced motion, jump to final value immediately
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const animateCounter = (el) => {
     const target = parseInt(el.getAttribute('data-count'), 10);
+
+    if (reducedMotion) {
+      el.textContent = target;
+      return;
+    }
+
     const duration = 1800;
     const startTime = performance.now();
 
@@ -328,6 +391,7 @@ const initCounters = () => {
 
 // =========================
 // TESTIMONIALS SLIDER
+// A19: Dots created as <button> elements (initKeyboardNav removed)
 // =========================
 
 const initTestimonialsSlider = () => {
@@ -341,7 +405,7 @@ const initTestimonialsSlider = () => {
   let current = 0;
   let autoPlayTimer = null;
 
-  // Build dots
+  // Build dots as <button> elements (A19: native button handles keyboard)
   if (dotsContainer) {
     cards.forEach((_, i) => {
       const dot = document.createElement('button');
@@ -376,8 +440,9 @@ const initTestimonialsSlider = () => {
     if (e.key === 'ArrowRight') goTo(current + 1);
   });
 
-  // Auto-play
+  // A17: Gate autoplay behind reduced-motion check
   const startAutoPlay = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     autoPlayTimer = setInterval(() => goTo(current + 1), 5500);
   };
 
@@ -423,6 +488,8 @@ const initBackToTop = () => {
 
 // =========================
 // CONTACT FORM VALIDATION
+// A15: aria-invalid on showError/clearError
+// A16: Replace alert() with #form-status live region
 // =========================
 
 const initContactForm = () => {
@@ -433,17 +500,26 @@ const initContactForm = () => {
   const emailInput = $('#email');
   const messageInput = $('#message');
   const successMsg = $('#form-success');
+  const formStatus = $('#form-status');
 
   const showError = (inputEl, errorId, message) => {
     const errorEl = $(`#${errorId}`);
     if (errorEl) errorEl.textContent = message;
-    if (inputEl) inputEl.classList.add('error');
+    if (inputEl) {
+      inputEl.classList.add('error');
+      // A15: mark invalid for screen readers
+      inputEl.setAttribute('aria-invalid', 'true');
+    }
   };
 
   const clearError = (inputEl, errorId) => {
     const errorEl = $(`#${errorId}`);
     if (errorEl) errorEl.textContent = '';
-    if (inputEl) inputEl.classList.remove('error');
+    if (inputEl) {
+      inputEl.classList.remove('error');
+      // A15: clear invalid state
+      inputEl.removeAttribute('aria-invalid');
+    }
   };
 
   const validateEmail = (email) => {
@@ -511,36 +587,42 @@ const initContactForm = () => {
     }
 
     if (isValid) {
-  const submitBtn = form.querySelector('[type="submit"]');
-  const btnText = submitBtn?.querySelector('.btn__text');
+      const submitBtn = form.querySelector('[type="submit"]');
+      const btnText = submitBtn?.querySelector('.btn__text');
 
-  if (btnText) btnText.textContent = 'Sending...';
-  if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.textContent = 'Sending...';
+      if (submitBtn) submitBtn.disabled = true;
+      // Clear any previous status
+      if (formStatus) formStatus.textContent = '';
 
-  const formData = new FormData(form);
+      const formData = new FormData(form);
 
-  fetch('https://formspree.io/f/xojrgrlr', {   // ← your real Formspree URL
-    method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(response => {
-    if (response.ok) {
-      form.reset();
-      if (successMsg) successMsg.classList.add('show');
-      setTimeout(() => successMsg.classList.remove('show'), 5000);
-    } else {
-      alert('Something went wrong. Please try again or email me directly.');
+      fetch('https://formspree.io/f/xojrgrlr', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          form.reset();
+          if (successMsg) successMsg.classList.add('show');
+          setTimeout(() => successMsg.classList.remove('show'), 5000);
+          // A16: Announce success via live region instead of alert()
+          if (formStatus) formStatus.textContent = "Message sent! I'll be in touch soon.";
+        } else {
+          // A16: Announce failure via live region instead of alert()
+          if (formStatus) formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
+        }
+      })
+      .catch(() => {
+        // A16: Announce network error via live region instead of alert()
+        if (formStatus) formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
+      })
+      .finally(() => {
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.textContent = 'Send Message';
+      });
     }
-  })
-  .catch(() => {
-    alert('Network error. Please check your connection and try again.');
-  })
-  .finally(() => {
-    if (submitBtn) submitBtn.disabled = false;
-    if (btnText) btnText.textContent = 'Send Message';
-  });
-}
   });
 };
 
@@ -573,9 +655,13 @@ const initImageFallbacks = () => {
 
 // =========================
 // HERO SECTION PARALLAX (subtle)
+// A17: Gated behind prefers-reduced-motion check
 // =========================
 
 const initHeroParallax = () => {
+  // A17: Skip parallax if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const glows = $$('.hero__glow');
   if (!glows.length) return;
 
@@ -630,7 +716,7 @@ const initHeroEntrance = () => {
           el.classList.add('visible');
         }, 300 + i * 100);
       });
-    }, 2000); // after preloader
+    }, 700); // aligned with reduced preloader cap
   });
 };
 
@@ -653,29 +739,14 @@ const initMarqueePause = () => {
 
 
 // =========================
-// KEYBOARD ACCESSIBILITY
-// =========================
-
-const initKeyboardNav = () => {
-  // Allow Enter key on buttons that are divs (for testimonial dots)
-  $$('.testimonials__dot').forEach((dot) => {
-    dot.setAttribute('role', 'button');
-    dot.setAttribute('tabindex', '0');
-    dot.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        dot.click();
-      }
-    });
-  });
-};
-
-
-// =========================
 // SERVICE CARD HOVER TILT (subtle)
+// A17: Gated behind prefers-reduced-motion check
 // =========================
 
 const initCardTilt = () => {
+  // A17: Skip tilt if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const cards = $$('.service-card');
   if (window.matchMedia('(pointer: coarse)').matches) return;
 
@@ -697,6 +768,9 @@ const initCardTilt = () => {
     });
   });
 };
+
+// A19: initKeyboardNav() removed — dots are now native <button> elements
+// that handle keyboard interaction natively without manual role/tabindex patches.
 
 
 // =========================
@@ -720,7 +794,6 @@ onReady(() => {
   initHeroParallax();
   initFooterYear();
   initMarqueePause();
-  initKeyboardNav();
   initCardTilt();
 
   console.log('✦ Portfolio loaded — Obaloluwa Enoch Adeleke');

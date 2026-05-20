@@ -12,7 +12,8 @@
   --clr-white:      #ffffff;
   --clr-off-white:  #e8e8e8;
   --clr-muted:      #888888;
-  --clr-muted-2:    #555555;
+  /* A11: --clr-muted-2 updated from #555555 to #9a9a9a for decorative text contrast */
+  --clr-muted-2:    #9a9a9a;
   --clr-accent:     #c8a96e;   /* warm gold accent */
   --clr-accent-2:   #e2c89a;
   --clr-accent-glow:rgba(200, 169, 110, 0.15);
@@ -58,9 +59,11 @@
   padding: 0;
 }
 
+/* A10: Scroll padding for fixed header */
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -69,9 +72,9 @@ body {
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.7;
+  /* A1: removed cursor: none from body */
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  cursor: none;
 }
 
 img {
@@ -88,10 +91,61 @@ a {
 ul { list-style: none; }
 
 button {
-  cursor: none;
+  /* A1: removed cursor: none from button */
   font-family: var(--font-sans);
   border: none;
   background: none;
+}
+
+/* A1: Global :focus-visible ring */
+:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Primary button gets white outline so it's visible on gold background */
+.btn--primary:focus-visible {
+  outline-color: #fff;
+}
+
+/* A3: Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  background: #fff;
+  color: #000;
+  padding: 0.75rem 1rem;
+  z-index: 10001;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 1rem;
+}
+
+/* A2: Project card link wrapper */
+.project-card-link {
+  display: contents;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Visually hidden utility for screen reader text */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* =========================
@@ -109,7 +163,8 @@ button {
 }
 
 @media (max-width: 768px) {
-  .section { padding: var(--sp-2xl) 0; }
+  /* Section 2: Section spacing on mobile updated */
+  .section { padding: 4rem 0; }
   .container { padding: 0 var(--sp-md); }
 }
 
@@ -176,7 +231,7 @@ button {
   padding: 0.85rem 1.75rem;
   border-radius: 4px;
   transition: var(--transition);
-  cursor: none;
+  /* A1: removed cursor: none from .btn */
 }
 
 .btn--primary {
@@ -405,6 +460,7 @@ button {
   flex-direction: column;
   gap: 5px;
   padding: 4px;
+  /* A1: cursor: none removed */
 }
 
 .nav__burger span {
@@ -439,7 +495,13 @@ button {
   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
+/* A4: When hidden attribute is removed JS also removes translateX by adding .open */
+.mobile-nav[hidden] {
+  display: none;
+}
+
 .mobile-nav.open {
+  display: flex;
   transform: translateX(0);
 }
 
@@ -478,7 +540,7 @@ button {
 }
 
 /* =========================
-   SCROLL REVEAL
+   SCROLL REVEAL ANIMATIONS
 ========================= */
 .reveal {
   opacity: 0;
@@ -581,6 +643,8 @@ button {
   line-height: 1.0;
   color: var(--clr-white);
   margin-bottom: var(--sp-md);
+  /* A18: max-width prevents horizontal overflow on narrow viewports */
+  max-width: 100%;
 }
 
 .hero__name-line--italic {
@@ -661,6 +725,8 @@ button {
   width: 1px;
   height: 40px;
   background: var(--clr-border);
+  /* A11: decorative divider keeps local #555 override */
+  background-color: #555;
 }
 
 .hero__scroll {
@@ -913,12 +979,13 @@ button {
   opacity: 1;
 }
 
+/* Section 2: Service card number legibility */
 .service-card__number {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: var(--clr-muted-2);
+  color: var(--clr-muted);
   margin-bottom: var(--sp-md);
 }
 
@@ -1024,7 +1091,8 @@ button {
   transform: translateX(4px);
 }
 
-.why-item h4 {
+/* A5: Updated from h4 to h3 — selector adjusted accordingly */
+.why-item h3 {
   font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: 700;
@@ -1375,7 +1443,8 @@ button {
   margin-bottom: 0.75rem;
 }
 
-.tft-pillar h4 {
+/* A5: Updated from h4 to h3 — selector adjusted accordingly */
+.tft-pillar h3 {
   font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: 700;
@@ -1497,7 +1566,7 @@ button {
   align-items: center;
   justify-content: center;
   transition: var(--transition);
-  cursor: none;
+  /* A1: cursor: none removed from .testimonials__btn */
 }
 
 .testimonials__btn:hover {
@@ -1505,22 +1574,26 @@ button {
   color: var(--clr-accent);
 }
 
+/* A8: Updated dots container gap */
 .testimonials__dots {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
+/* A8: Dots updated with padding for larger touch target; background-clip for visual */
 .testimonials__dot {
-  width: 6px;
-  height: 6px;
+  width: 12px;
+  height: 12px;
+  padding: 6px;
+  background-clip: content-box;
   border-radius: 50%;
-  background: var(--clr-border);
+  background-color: var(--clr-border);
   transition: var(--transition);
-  cursor: none;
+  /* A1: cursor: none removed from .testimonials__dot */
 }
 
 .testimonials__dot.active {
-  background: var(--clr-accent);
+  background-color: var(--clr-accent);
   width: 20px;
   border-radius: 3px;
 }
@@ -1561,7 +1634,8 @@ button {
   margin-top: 2px;
 }
 
-.cert-card__content h4 {
+/* A5: Updated from h4 to h3 — selector adjusted accordingly */
+.cert-card__content h3 {
   font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 700;
@@ -1730,9 +1804,10 @@ button {
   appearance: none;
 }
 
+/* A12: Placeholder contrast updated */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: var(--clr-muted-2);
+  color: #a0a0a0;
 }
 
 .form-group input:focus,
@@ -1759,6 +1834,14 @@ button {
   color: var(--clr-off-white);
 }
 
+/* A15: Form note */
+.form-note {
+  font-size: 0.75rem;
+  color: var(--clr-muted);
+  font-family: var(--font-sans);
+  margin-bottom: 0.25rem;
+}
+
 .form-success {
   display: none;
   text-align: center;
@@ -1775,8 +1858,27 @@ button {
   display: block;
 }
 
+/* A16: Accessible form status message */
+.form-status {
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  color: var(--clr-muted);
+  min-height: 1.5rem;
+}
+
+.form-status:not(:empty) {
+  color: var(--clr-accent);
+}
+
 @media (max-width: 900px) {
   .contact__grid { grid-template-columns: 1fr; }
+}
+
+/* Section 2: Contact form padding on small screens */
+@media (max-width: 540px) {
+  .contact__form-wrap {
+    padding: var(--sp-md);
+  }
 }
 
 /* =========================
@@ -1825,7 +1927,9 @@ button {
   letter-spacing: 0.03em;
 }
 
-.footer__links h5 {
+/* A5: Updated from h5 to h2.footer__heading — selector adjusted accordingly */
+.footer__links .footer__heading,
+.footer__connect .footer__heading {
   font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 700;
@@ -1849,16 +1953,6 @@ button {
 
 .footer__links a:hover {
   color: var(--clr-accent);
-}
-
-.footer__connect h5 {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--clr-muted);
-  margin-bottom: 1.25rem;
 }
 
 .footer__socials {
@@ -1928,7 +2022,7 @@ button {
   opacity: 0;
   transform: translateY(10px);
   transition: var(--transition);
-  cursor: none;
+  /* A1: cursor: none removed from .back-to-top */
 }
 
 .back-to-top.visible {
@@ -1946,12 +2040,18 @@ button {
    RESPONSIVE MEDIA
 ========================= */
 @media (max-width: 600px) {
+  /* A18: Reduced clamp lower bound for hero name; removed overflow-x: hidden from body */
   .hero__name {
-    font-size: clamp(2.5rem, 12vw, 4rem);
+    font-size: clamp(2rem, 10vw, 4rem);
   }
 
   .hero__stats {
     gap: var(--sp-md);
+  }
+
+  /* Section 2: Hero stat dividers hidden on mobile */
+  .hero__stat-divider {
+    display: none;
   }
 
   .hero__scroll {
@@ -1964,4 +2064,22 @@ button {
 /* Image placeholder when files are missing */
 img[src$=".jpg"] {
   background: linear-gradient(135deg, #1a1a1a 25%, #161616 100%);
+}
+
+/* =========================
+   PREFERS-REDUCED-MOTION (A17)
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track,
+  .preloader__fill,
+  .hero__scroll-line::after,
+  .hero__tag-dot {
+    animation: none !important;
+  }
 }

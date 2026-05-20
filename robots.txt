@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: Update Sitemap URL once custom domain is live
+Sitemap: https://obaloluwaadeleke.github.io/portfolio/sitemap.xml
