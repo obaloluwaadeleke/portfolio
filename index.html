@@ -4,941 +4,695 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO: Updated meta description (A-section fix) -->
-  <meta name="description" content="Brand identity, WordPress web design and brand strategy for ambitious businesses in Lagos and across Africa. Clear, strategic, memorable brand work by Obaloluwa Adeleke." />
+  <title>Obaloluwa Adeleke | AI Automation Specialist &amp; Brand Designer in Lagos</title>
+  <meta name="description" content="AI automation specialist and brand designer in Lagos. I build Make, n8n and AI workflows, plus brand identities and websites, for businesses across Africa." />
   <meta name="author" content="Obaloluwa Enoch Adeleke" />
+  <meta name="theme-color" content="#f4f4f1" />
+  <link rel="canonical" href="https://obaloluwaadeleke.github.io/portfolio/" />
 
-  <!-- Theme colour -->
-  <meta name="theme-color" content="#0a0a0a">
-
-  <title>Obaloluwa Enoch Adeleke — Brand & Design Strategist</title>
-
-  <!-- Open Graph tags -->
-  <!-- TODO: update to custom domain -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://obaloluwaadeleke.github.io/portfolio/" />
-  <meta property="og:title" content="Obaloluwa Adeleke — Brand & WordPress Designer in Lagos" />
-  <meta property="og:description" content="Brand identity, Web web design and brand strategy for ambitious businesses in Lagos and across Africa." />
-  <meta property="og:image" content="https://obaloluwaadeleke.github.io/portfolio/media/og-image.jpg" /><!-- TODO: create this asset -->
+  <meta property="og:title" content="Obaloluwa Adeleke | AI Automation Specialist &amp; Brand Designer" />
+  <meta property="og:description" content="Make, n8n and AI workflows that don't fail silently, plus brand identities and websites. Based in Lagos, Nigeria." />
+  <meta property="og:image" content="https://obaloluwaadeleke.github.io/portfolio/media/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Obaloluwa Adeleke, AI Automation Specialist and Brand Designer: I design brands and build the automations behind them." />
   <meta property="og:locale" content="en_NG" />
-  <meta property="og:site_name" content="Obaloluwa Adeleke Portfolio" />
-
-  <!-- Twitter Card tags -->
+  <meta property="og:site_name" content="Obaloluwa Adeleke" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Obaloluwa Adeleke — Brand & Web Designer in Lagos" />
-  <meta name="twitter:description" content="Brand identity, Web web design and brand strategy for ambitious businesses in Lagos and across Africa." />
-  <meta name="twitter:image" content="https://obaloluwaadeleke.github.io/portfolio/media/og-image.jpg" /><!-- TODO: create this asset -->
+  <meta name="twitter:image" content="https://obaloluwaadeleke.github.io/portfolio/media/og-image.jpg" />
+  <meta name="twitter:title" content="Obaloluwa Adeleke | AI Automation Specialist &amp; Brand Designer" />
+  <meta name="twitter:description" content="Make, n8n and AI workflows that don't fail silently, plus brand identities and websites." />
 
-  <!-- Favicon links -->
-  <!-- TODO: create this asset -->
-  <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
-  <!-- TODO: create this asset -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/apple-touch-icon.png" />
-  <link rel="manifest" href="/portfolio/site.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="manifest" href="site.webmanifest" />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
-  <!-- Stylesheet -->
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- A3: Skip link — first child of body -->
   <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <!-- ========================= PRELOADER ========================= -->
-  <div class="preloader" id="preloader">
-    <div class="preloader__inner">
-      <span class="preloader__name">OBA</span>
-      <div class="preloader__bar"><div class="preloader__fill"></div></div>
-    </div>
-  </div>
-
-  <!-- ========================= CURSOR ========================= -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursor-follower"></div>
-
-  <!-- ========================= NAVIGATION ========================= -->
+  <!-- ============ HEADER ============ -->
   <header class="header" id="header">
-    <nav class="nav container">
-      <a href="#home" class="nav__logo">
-        <span class="nav__logo-mark">OBA</span>
-        <span class="nav__logo-dot"></span>
+    <nav class="nav container" aria-label="Primary">
+      <a href="#home" class="nav__logo" aria-label="Obaloluwa Adeleke, home">
+        <span class="nav__logo-mark">OBA</span><span class="nav__logo-dot" aria-hidden="true"></span>
       </a>
 
-      <ul class="nav__list" id="nav-list">
+      <ul class="nav__list">
         <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#work" class="nav__link">Work</a></li>
         <li><a href="#services" class="nav__link">Services</a></li>
-        <li><a href="#projects" class="nav__link">Work</a></li>
+        <li><a href="#process" class="nav__link">Process</a></li>
         <li><a href="#experience" class="nav__link">Experience</a></li>
-        <li><a href="#tech-for-teens" class="nav__link">Initiative</a></li>
         <li><a href="#contact" class="nav__link">Contact</a></li>
       </ul>
 
-      <a href="#contact" class="btn btn--nav">Let's Talk</a>
+      <a href="#contact" class="btn btn--small nav__cta">Free workflow audit</a>
 
-      <!-- A4: Updated burger with dialog-pattern aria attributes -->
       <button class="nav__burger" id="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
       </button>
     </nav>
 
-    <!-- A23: Mobile nav moved inside header; A4: dialog role + hidden -->
     <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Site navigation" hidden>
       <ul class="mobile-nav__list">
         <li><a href="#about" class="mobile-nav__link">About</a></li>
+        <li><a href="#work" class="mobile-nav__link">Work</a></li>
         <li><a href="#services" class="mobile-nav__link">Services</a></li>
-        <li><a href="#projects" class="mobile-nav__link">Work</a></li>
+        <li><a href="#process" class="mobile-nav__link">Process</a></li>
         <li><a href="#experience" class="mobile-nav__link">Experience</a></li>
-        <li><a href="#tech-for-teens" class="mobile-nav__link">Initiative</a></li>
         <li><a href="#contact" class="mobile-nav__link">Contact</a></li>
       </ul>
-      <div class="mobile-nav__footer">
-        <p>Brand Manager · WebQ Solutions</p>
-        <p>Founder · Tech for Teens</p>
-      </div>
+      <a href="#contact" class="btn mobile-nav__cta">Get a free workflow audit</a>
     </div>
   </header>
 
-  <!-- A3: id="main" on main element -->
   <main id="main">
 
-    <!-- ========================= HERO SECTION ========================= -->
+    <!-- ============ HERO ============ -->
     <section class="hero" id="home">
-      <div class="hero__bg-grid"></div>
-      <div class="hero__glow hero__glow--1"></div>
-      <div class="hero__glow hero__glow--2"></div>
+      <div class="container hero__grid">
 
-      <div class="container hero__container">
-        <div class="hero__tag reveal">
-          <!-- A17: hero__tag-dot animation gated via CSS media query -->
-          <span class="hero__tag-dot"></span>
-          Available for new projects
-        </div>
+        <div class="hero__copy">
+          <p class="eyebrow reveal">AI Automation Specialist <span class="sep">/</span> Brand Designer <span class="sep">/</span> Lagos, Nigeria</p>
 
-        <h1 class="hero__name reveal">
-          <span class="hero__name-line">Obaloluwa</span>
-          <span class="hero__name-line hero__name-line--italic">Enoch</span>
-          <span class="hero__name-line">Adeleke</span>
-        </h1>
+          <h1 class="hero__title">
+            <span class="w" style="--i:0">I</span> <span class="w" style="--i:1">design</span> <span class="w" style="--i:2"><em class="t-brand">brands</em></span> <span class="w" style="--i:3">and</span> <span class="w" style="--i:4">build</span> <span class="w" style="--i:5">the</span> <span class="w" style="--i:6"><em class="t-auto">automations</em></span> <span class="w" style="--i:7">behind</span> <span class="w" style="--i:8">them.</span>
+          </h1>
 
-        <div class="hero__roles reveal">
-          <span class="hero__role">Brand Identity Designer</span>
-          <span class="hero__role-sep">·</span>
-          <span class="hero__role">Web Designer</span>
-          <span class="hero__role-sep">·</span>
-          <span class="hero__role">Brand Manager</span>
-        </div>
+          <p class="hero__desc reveal">
+            I build Make, n8n and AI workflows that take repetitive work off your team, with error handling and alerts built in so nothing gets quietly lost. I also design the identities and websites that make a business look as good as it runs.
+          </p>
 
-        <p class="hero__desc reveal">
-          I help businesses build clear, strategic, and memorable brand experiences through identity design, web design, and brand strategy.
-        </p>
-
-        <div class="hero__cta reveal">
-          <a href="#projects" class="btn btn--primary">View Projects</a>
-          <a href="#contact" class="btn btn--ghost">Let's Work Together</a>
-        </div>
-
-        <div class="hero__stats reveal">
-          <div class="hero__stat">
-            <span class="hero__stat-num" data-count="40">0</span><span class="hero__stat-sym">+</span>
-            <p>Projects Delivered</p>
+          <div class="hero__cta reveal">
+            <a href="#contact" class="btn">Get a free workflow audit</a>
+            <a href="#work" class="btn btn--ghost">See the work</a>
           </div>
-          <div class="hero__stat-divider"></div>
-          <div class="hero__stat">
-            <span class="hero__stat-num" data-count="3">0</span><span class="hero__stat-sym">+</span>
-            <p>Years of Experience</p>
-          </div>
-          <div class="hero__stat-divider"></div>
-          <div class="hero__stat">
-            <span class="hero__stat-num" data-count="15">0</span><span class="hero__stat-sym">+</span>
-            <p>Brands Elevated</p>
-          </div>
+
+          <p class="hero__status reveal"><span class="status-dot" aria-hidden="true"></span>Open to freelance builds and full-time remote or hybrid roles</p>
         </div>
+
+        <figure class="runlog reveal" aria-label="Interactive example: break a workflow and watch it recover">
+          <figcaption class="runlog__bar">
+            <span class="runlog__tabs">
+              <span class="runlog__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="runlog__title">invoice-intake.workflow</span>
+            </span>
+            <span class="runlog__live"><span class="status-dot" aria-hidden="true"></span><span id="runlog-state">live</span></span>
+          </figcaption>
+
+          <ol class="runlog__lines" id="runlog" role="log" aria-label="Run log">
+            <li><time>09:14:02</time><span>webhook received &middot; invoice_0412.pdf</span></li>
+            <li><time>09:14:03</time><span><b class="t-auto">ai.extract</b> &rarr; vendor, amount, due_date</span></li>
+            <li><time>09:14:03</time><span>validate: amount missing &rarr; <b class="t-warn">retry</b></span></li>
+            <li><time>09:14:05</time><span>validate: <b class="t-auto">ok</b></span></li>
+            <li><time>09:14:05</time><span>airtable.create &rarr; rec_8Hf2&hellip;</span></li>
+            <li class="runlog__done"><time>09:14:06</time><span>run complete &middot; 4.1s &middot; 0 dropped</span></li>
+          </ol>
+
+          <div class="runlog__game">
+            <p class="runlog__prompt" id="runlog-prompt">Break it on purpose. Pick a failure and watch the workflow handle it.</p>
+            <div class="runlog__btns" role="group" aria-label="Inject a failure">
+              <button type="button" class="chaos" data-scenario="malformed">Malformed payload</button>
+              <button type="button" class="chaos" data-scenario="empty">Empty AI response</button>
+              <button type="button" class="chaos" data-scenario="duplicate">Duplicate trigger</button>
+              <button type="button" class="chaos" data-scenario="token">Expired token</button>
+              <button type="button" class="chaos chaos--ok" data-scenario="ok">Clean run</button>
+            </div>
+            <div class="runlog__score">
+              <ul class="pips" aria-hidden="true"><li data-pip="malformed"></li><li data-pip="empty"></li><li data-pip="duplicate"></li><li data-pip="token"></li></ul>
+              <span id="runlog-score">0 of 4 failures handled</span>
+              <span id="runlog-runs" class="runlog__runs">0 dropped</span>
+            </div>
+            <a class="runlog__cta" id="runlog-cta" href="#contact" hidden>Four failures, nothing dropped. Get this for your process <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </figure>
+
       </div>
 
-      <div class="hero__scroll">
-        <span>Scroll</span>
-        <div class="hero__scroll-line"></div>
-      </div>
-    </section>
-
-    <!-- ========================= MARQUEE BAND ========================= -->
-    <div class="marquee-band">
-      <div class="marquee-track">
-        <span>Brand Identity</span>
-        <span class="marquee-dot">✦</span>
-        <span>Web Design</span>
-        <span class="marquee-dot">✦</span>
-        <span>Brand Strategy</span>
-        <span class="marquee-dot">✦</span>
-        <span>UI/UX Design</span>
-        <span class="marquee-dot">✦</span>
-        <span>Brand Management</span>
-        <span class="marquee-dot">✦</span>
-        <span>Creative Direction</span>
-        <span class="marquee-dot">✦</span>
-        <span>Digital Experiences</span>
-        <span class="marquee-dot">✦</span>
-        <!-- Duplicate for seamless loop -->
-        <span>Brand Identity</span>
-        <span class="marquee-dot">✦</span>
-        <span>Web Design</span>
-        <span class="marquee-dot">✦</span>
-        <span>Brand Strategy</span>
-        <span class="marquee-dot">✦</span>
-        <span>UI/UX Design</span>
-        <span class="marquee-dot">✦</span>
-        <span>Brand Management</span>
-        <span class="marquee-dot">✦</span>
-        <span>Creative Direction</span>
-        <span class="marquee-dot">✦</span>
-        <span>Digital Experiences</span>
-        <span class="marquee-dot">✦</span>
-      </div>
-    </div>
-
-    <!-- ========================= ABOUT SECTION ========================= -->
-    <section class="about section" id="about">
       <div class="container">
-        <div class="about__grid">
-
-          <!-- Left: Image -->
-          <div class="about__image-wrap reveal">
-            <div class="about__image-frame">
-              <!-- A22: Updated descriptive alt text -->
-              <img src="media/profile/headshot.jpg" alt="Portrait photo of Obaloluwa Enoch Adeleke" class="about__image" />
-              <div class="about__image-badge">
-                <span>Open to</span>
-                <strong>Work</strong>
-              </div>
-            </div>
-            <div class="about__image-label">
-              <span>Lagos, Nigeria</span>
-              <span class="about__image-label-dot"></span>
-              <span>West Africa</span>
-            </div>
-          </div>
-
-          <!-- Right: Content -->
-          <div class="about__content">
-            <div class="section__label reveal">About Me</div>
-            <h2 class="section__title reveal">
-              Strategy meets <em>creativity</em> in everything I build.
-            </h2>
-
-            <p class="about__text reveal" style="text-align: justify;">
-              I am a multidisciplinary creative professional passionate about helping brands communicate with clarity, confidence, and purpose. My work sits at the intersection of strategy, creativity, and technology.
-            </p>
-            <p class="about__text reveal" style="text-align: justify;">
-              I work with startups, corporate organizations, NGOs, business owners, and technology-focused brands to create visual systems and digital experiences that are not only visually compelling but strategically effective.
-            </p>
-            <p class="about__text reveal" style="text-align: justify;">
-              I believe strong brands are built with intention through strategy, design thinking, and clear communication. Currently, I serve as the <strong>Brand Manager at WebQ Solutions</strong> and <strong>Creative Director at Acmes Media</strong>, where I contribute to building modern brand experiences and creative solutions. I am also the <strong>Founder of Tech for Teens</strong>, an initiative focused on equipping young people with practical digital and technology skills through learning, mentorship, and creative exposure.
-            </p>
-
-            <div class="about__tags reveal">
-              <span class="about__tag">Brand Strategy</span>
-              <span class="about__tag">Identity Design</span>
-              <span class="about__tag">Web Design</span>
-              <span class="about__tag">UI/UX</span>
-              <span class="about__tag">Brand Management</span>
-              <span class="about__tag">Creative Direction</span>
-            </div>
-
-            <a href="#contact" class="btn btn--primary reveal">Work With Me</a>
-          </div>
-
-        </div>
+        <dl class="facts reveal">
+          <div><dt>Years of client work</dt><dd>10</dd></div>
+          <div><dt>Automation platforms: Make, n8n, Zapier, Power Automate</dt><dd>4</dd></div>
+          <div><dt>AI model APIs: OpenAI, Claude, OpenRouter, DeepSeek, SiliconFlow</dt><dd>5</dd></div>
+        </dl>
       </div>
     </section>
 
-    <!-- ========================= SERVICES SECTION ========================= -->
-    <section class="services section" id="services">
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
+      <div class="container about__grid">
+
+        <div class="about__side reveal">
+          <div class="about__photo">
+            <img src="media/profile/headshot.jpg" alt="Portrait of Obaloluwa Enoch Adeleke" width="640" height="800" loading="lazy" />
+          </div>
+
+          <div class="credential">
+            <p class="label">Certification</p>
+            <h3 class="credential__name">Diploma in AI Automation</h3>
+            <p class="credential__meta">Utiva &middot; Oct 2026</p>
+            <p class="credential__meta">Credential ID QB6GQLT27864Q</p>
+            <a class="link" href="https://study.utiva.co/credential-validation" target="_blank" rel="noopener noreferrer">Verify credential <span aria-hidden="true">&nearr;</span></a>
+          </div>
+        </div>
+
+        <div class="about__body">
+          <p class="label reveal">About</p>
+          <h2 class="section__title reveal">Ten years of client work. <em>Certified</em> in automation.</h2>
+
+          <p class="reveal">I'm Obaloluwa, a Computer Science graduate in Lagos with a Diploma in AI Automation from Utiva. I design, build and troubleshoot business workflows with Make, n8n, APIs and AI models, and I document them so your team can run them without me.</p>
+
+          <p class="reveal">I started in brand and web design, and that work still runs alongside the automation. I'm Brand Manager at WebQ Solutions and founder and Creative Director of Acmes Media, where I've spent ten years turning vague client requests into defined processes and finished deliverables. That is most of the work in automation too.</p>
+
+          <p class="reveal">Before asking whether a workflow works, I ask what happens when it doesn't: a malformed payload, an empty AI response, a duplicate trigger, an expired token. I build those cases in from the start rather than finding them after launch.</p>
+
+          <p class="reveal">I also founded Tech for Teens, which teaches practical tech and creative skills to teenagers from low-income backgrounds.</p>
+
+          <ul class="chips reveal" aria-label="Areas of work">
+            <li class="chip chip--auto">AI workflows</li>
+            <li class="chip chip--auto">Make &amp; n8n</li>
+            <li class="chip chip--auto">API integrations</li>
+            <li class="chip chip--brand">Brand identity</li>
+            <li class="chip chip--brand">Web design</li>
+            <li class="chip chip--brand">Brand strategy</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="section work" id="work">
       <div class="container">
         <div class="section__head reveal">
-          <div class="section__label">What I Do</div>
-          <h2 class="section__title">Services built to <em>elevate</em> your brand.</h2>
-          <p class="section__subtitle">From identity to digital experience — I bring strategy and craft to every engagement.</p>
+          <p class="label">Selected work</p>
+          <h2 class="section__title">Workflows and brands I've <em>built.</em></h2>
+          <p class="section__sub">Each automation case study covers the problem, how the workflow runs, and how it handles bad input, failed API calls and edge cases.</p>
         </div>
 
-        <div class="services__grid">
+        <div class="filters reveal" role="group" aria-label="Filter work">
+          <button type="button" class="filter" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter filter--auto" data-filter="auto" aria-pressed="false">Automation</button>
+          <button type="button" class="filter filter--brand" data-filter="brand" aria-pressed="false">Brand &amp; design</button>
+        </div>
 
-          <!-- A7: Added unique id for footer deep-link -->
-          <div class="service-card reveal" id="service-brand-identity">
-            <div class="service-card__number">01</div>
-            <!-- A22: aria-hidden on decorative SVG -->
-            <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 4L4 14v20l20 10 20-10V14L24 4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M24 4v30M4 14l20 10 20-10" stroke="currentColor" stroke-width="2"/></svg>
-            </div>
-            <h3 class="service-card__title">Brand Identity Design</h3>
-            <p class="service-card__desc">Strategic visual systems that define your brand's personality — logo suites, color palettes, typography, brand guidelines, and complete identity packages built for longevity.</p>
-            <div class="service-card__tags">
-              <span>Logo Design</span>
-              <span>Brand Guidelines</span>
-              <span>Visual Identity</span>
-            </div>
-          </div>
+        <div class="work__grid" id="work-grid">
 
-          <!-- A7: Added unique id for footer deep-link -->
-          <div class="service-card reveal" id="service-wordpress">
-            <div class="service-card__number">02</div>
-            <!-- A22: aria-hidden on decorative SVG -->
-            <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="8" width="40" height="28" rx="3" stroke="currentColor" stroke-width="2"/><path d="M16 44h16M24 36v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 30h40" stroke="currentColor" stroke-width="2"/></svg>
+          <!-- Automation: ExpenseIQ -->
+          <article class="card card--auto card--wide" data-track="auto">
+            <div class="card__top">
+              <span class="tag tag--auto">Automation</span>
+              <span class="status status--live"><span class="status-dot" aria-hidden="true"></span>Live</span>
             </div>
-            <h3 class="service-card__title">WordPress Web Design</h3>
-            <p class="service-card__desc">High-performance WordPress websites designed with intention — responsive layouts, premium themes, Elementor builds, custom styling, and seamless user experiences.</p>
-            <div class="service-card__tags">
-              <span>WordPress</span>
-              <span>Elementor</span>
-              <span>Responsive Design</span>
-            </div>
-          </div>
+            <h3 class="card__title">ExpenseIQ</h3>
+            <p class="card__kicker">AI expense categorisation &amp; approval</p>
+            <p class="card__desc">An expense system for Naira spending. Staff file a claim in minutes, AI categorises and checks it, and claims of ₦100,000 and above go to a manager queue automatically.</p>
+            <ol class="flow" aria-label="Workflow steps">
+              <li>Expense submitted</li>
+              <li>Make webhook</li>
+              <li class="flow__ai">AI categorise</li>
+              <li>Validate output</li>
+              <li>Airtable record</li>
+              <li>Amount check</li>
+            </ol>
+            <p class="card__fail"><strong>Handles failure:</strong> a guard for undefined AI message content means an empty model response cannot become a blank record.</p>
+            <ul class="stack"><li>Make</li><li>Airtable</li><li>AI model APIs</li><li>Webhooks</li><li>JSON</li><li>Lovable</li></ul>
+            <a class="link" href="https://obaloluwa-automates.vercel.app/work/expense-iq" target="_blank" rel="noopener noreferrer">Read the case study <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens my automation portfolio)</span></a>
+          </article>
 
-          <!-- A7: Added unique id for footer deep-link -->
-          <!-- NOTE: No service-brand-strategy card exists for "UI/UX"; using service-uiux id here -->
-          <div class="service-card reveal" id="service-brand-strategy">
-            <div class="service-card__number">03</div>
-            <!-- A22: aria-hidden on decorative SVG -->
-            <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="8" y="6" width="22" height="36" rx="3" stroke="currentColor" stroke-width="2"/><rect x="34" y="14" width="10" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M14 36h10M37 22h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <!-- Automation: AI Document Filing -->
+          <article class="card card--auto" data-track="auto">
+            <div class="card__top">
+              <span class="tag tag--auto">Automation</span>
+              <span class="status"><span class="status-dot status-dot--off" aria-hidden="true"></span>Built &amp; tested</span>
             </div>
-            <h3 class="service-card__title">UI/UX Design</h3>
-            <p class="service-card__desc">User-centered digital interfaces designed for clarity, usability, and conversion — wireframes, prototypes, and polished UI systems for web and mobile platforms.</p>
-            <div class="service-card__tags">
-              <span>Wireframing</span>
-              <span>Prototyping</span>
-              <span>User Research</span>
-            </div>
-          </div>
+            <h3 class="card__title">AI Document Filing</h3>
+            <p class="card__kicker">n8n &middot; summarise, convert, file to Google Drive</p>
+            <p class="card__desc">Fetches content, summarises it with AI, converts it to a file and files it in the right Google Drive folder, creating the folder if it doesn't exist yet.</p>
+            <p class="card__fail"><strong>Handles failure:</strong> a folder-existence check runs before upload, so repeated runs never create duplicate folders.</p>
+            <ul class="stack"><li>n8n</li><li>HTTP Request</li><li>AI summarisation</li><li>Google Drive</li><li>OAuth2</li></ul>
+            <a class="link" href="https://obaloluwa-automates.vercel.app/work/n8n-document-drive" target="_blank" rel="noopener noreferrer">Read the case study <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens my automation portfolio)</span></a>
+          </article>
 
-          <!-- A7: Added unique id for footer deep-link -->
-          <div class="service-card reveal" id="service-creative-direction">
-            <div class="service-card__number">04</div>
-            <!-- A22: aria-hidden on decorative SVG -->
-            <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/><path d="M24 12v12l8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24h4M34 24h4M24 10v4M24 34v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <!-- Automation: Lead Capture & Routing -->
+          <article class="card card--auto" data-track="auto">
+            <div class="card__top">
+              <span class="tag tag--auto">Automation</span>
+              <span class="status"><span class="status-dot status-dot--off" aria-hidden="true"></span>Workflow design</span>
             </div>
-            <h3 class="service-card__title">Brand Strategy</h3>
-            <p class="service-card__desc">Clarity behind the design. From brand positioning and audience research to messaging frameworks — I help brands define who they are, who they serve, and how they communicate.</p>
-            <div class="service-card__tags">
-              <span>Positioning</span>
-              <span>Brand Voice</span>
-              <span>Market Research</span>
+            <h3 class="card__title">Lead Capture &amp; Routing</h3>
+            <p class="card__kicker">Make &middot; Airtable &middot; AI-assisted triage</p>
+            <p class="card__desc">Captures prospects into Airtable, categorises them by service, and triggers the right follow-up for each category.</p>
+            <p class="card__fail"><strong>Handles failure:</strong> leads the AI can't classify with confidence go to a person instead of being dropped.</p>
+            <ul class="stack"><li>Make</li><li>Airtable</li><li>AI model APIs</li><li>Routers</li><li>Email</li></ul>
+            <a class="link" href="https://obaloluwa-automates.vercel.app/work/lead-routing" target="_blank" rel="noopener noreferrer">Read the case study <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens my automation portfolio)</span></a>
+          </article>
+
+          <!-- Brand: WebQ -->
+          <article class="card card--brand card--wide card--media" data-track="brand">
+            <div class="card__media"><img src="media/projects/webq.jpg" alt="WebQ Solutions brand identity, logo on a dark background" loading="lazy" /></div>
+            <div class="card__body">
+              <div class="card__top"><span class="tag tag--brand">Brand &amp; design</span><span class="card__year">2024</span></div>
+              <h3 class="card__title">WebQ Solutions</h3>
+              <p class="card__kicker">Brand identity &middot; Brand Manager</p>
+              <p class="card__desc">Complete brand identity and web presence for a digital solutions company: logo system, brand guidelines, and a high-converting WordPress website.</p>
             </div>
-          </div>
+          </article>
+
+          <!-- Brand: SEO Kits -->
+          <article class="card card--brand card--media" data-track="brand">
+            <div class="card__media"><img src="media/projects/seokits.jpg" alt="SEO Kits web design and brand identity on a white background" loading="lazy" /></div>
+            <div class="card__body">
+              <div class="card__top"><span class="tag tag--brand">Brand &amp; design</span><span class="card__year">2024</span></div>
+              <h3 class="card__title">SEO Kits</h3>
+              <p class="card__kicker">Web design</p>
+              <p class="card__desc">Brand identity and web design for a digital SEO product, positioned for clarity and authority in a competitive market.</p>
+            </div>
+          </article>
+
+          <!-- Brand: Ewie -->
+          <article class="card card--brand card--media" data-track="brand">
+            <div class="card__media"><img src="media/projects/ewie.jpg" alt="Ewie brand identity, logo mark on a neutral background" loading="lazy" /></div>
+            <div class="card__body">
+              <div class="card__top"><span class="tag tag--brand">Brand &amp; design</span><span class="card__year">2025</span></div>
+              <h3 class="card__title">Ewie</h3>
+              <p class="card__kicker">Brand identity design</p>
+              <p class="card__desc">A modern brand identity built for clarity, recognition and a strong visual presence that reflects the brand's vision.</p>
+            </div>
+          </article>
+
+          <!-- Brand: Queuesigns -->
+          <article class="card card--brand card--media" data-track="brand">
+            <div class="card__media"><img src="media/projects/queuesigns.jpg" alt="Queuesigns digital signage brand, marketing collateral mockup" loading="lazy" /></div>
+            <div class="card__body">
+              <div class="card__top"><span class="tag tag--brand">Brand &amp; design</span><span class="card__year">2024</span></div>
+              <h3 class="card__title">Queuesigns</h3>
+              <p class="card__kicker">Brand identity &middot; Marketing</p>
+              <p class="card__desc">Brand identity and marketing collateral for a hardware-free digital signage platform aimed at modern businesses.</p>
+            </div>
+          </article>
+
+          <!-- Brand: Bee-Ileewa -->
+          <article class="card card--brand card--media" data-track="brand">
+            <div class="card__media"><img src="media/projects/bee-ileewa.jpg" alt="Bee-Ileewa House of Beauty, feminine brand identity layout" loading="lazy" /></div>
+            <div class="card__body">
+              <div class="card__top"><span class="tag tag--brand">Brand &amp; design</span><span class="card__year">2023</span></div>
+              <h3 class="card__title">Bee-Ileewa: House of Beauty</h3>
+              <p class="card__kicker">Brand identity &middot; Lifestyle</p>
+              <p class="card__desc">A refined, feminine brand identity for a premium beauty brand, built for the modern African woman.</p>
+            </div>
+          </article>
 
         </div>
+
+        <p class="work__more reveal">More automation builds, with workflow diagrams, live at <a class="link" href="https://obaloluwa-automates.vercel.app/" target="_blank" rel="noopener noreferrer">obaloluwa-automates.vercel.app <span aria-hidden="true">&nearr;</span></a></p>
       </div>
     </section>
 
-    <!-- ========================= WHY WORK WITH ME ========================= -->
-    <section class="why section">
-      <div class="container">
-        <div class="why__grid">
-
-          <div class="why__left">
-            <div class="section__label reveal">Why Choose Me</div>
-            <h2 class="section__title reveal">Design that thinks as hard as it <em>looks.</em></h2>
-            <p class="why__text reveal">Every project I take on begins with understanding — your goals, your audience, your competitive landscape. Great design isn't just beautiful; it's purposeful, strategic, and effective.</p>
-            <a href="#projects" class="btn btn--ghost reveal">See My Work</a>
-          </div>
-
-          <div class="why__right">
-            <!-- A5: h4 → h3 in .why-item elements -->
-            <div class="why-item reveal">
-              <div class="why-item__icon">→</div>
-              <div>
-                <h3>Strategy-Driven Design</h3>
-                <p>Every visual decision is backed by clear thinking — not just aesthetic preference.</p>
-              </div>
-            </div>
-            <div class="why-item reveal">
-              <div class="why-item__icon">→</div>
-              <div>
-                <h3>Problem-Solving Approach</h3>
-                <p>I diagnose before I design. Your brand challenge is addressed at the root, not the surface.</p>
-              </div>
-            </div>
-            <div class="why-item reveal">
-              <div class="why-item__icon">→</div>
-              <div>
-                <h3>Precision &amp; Attention to Detail</h3>
-                <p>Pixel-perfect execution and obsessive quality control across every deliverable.</p>
-              </div>
-            </div>
-            <div class="why-item reveal">
-              <div class="why-item__icon">→</div>
-              <div>
-                <h3>Professional Communication</h3>
-                <p>Clear updates, transparent timelines, and collaborative workflows throughout every project.</p>
-              </div>
-            </div>
-            <div class="why-item reveal">
-              <div class="why-item__icon">→</div>
-              <div>
-                <h3>Long-Term Brand Value</h3>
-                <p>I design systems built to scale — not trends that expire in six months.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================= FEATURED PROJECTS SECTION ========================= -->
-    <section class="projects section" id="projects">
+    <!-- ============ SERVICES ============ -->
+    <section class="section services" id="services">
       <div class="container">
         <div class="section__head reveal">
-          <div class="section__label">Selected Work</div>
-          <h2 class="section__title">Projects that <em>perform.</em></h2>
-          <p class="section__subtitle">A curated selection of brand and design work built with strategy at the core.</p>
+          <p class="label">What I do</p>
+          <h2 class="section__title">Hand off the repetitive work. <em>Keep the decisions.</em></h2>
+          <p class="section__sub">AI handles the reading, sorting and drafting. Your people keep the decisions that matter, with a clear record of what the workflow did.</p>
         </div>
 
-        <div class="projects__grid">
+        <div class="services__cols">
 
-          <!-- Project 1 -->
-          <!-- A2: Wrapped in project-card-link; placeholder href until case study page exists -->
-          <a href="#projects" class="project-card-link">
-            <article class="project-card project-card--large reveal">
-              <div class="project-card__image-wrap">
-                <!-- A22: Descriptive alt text -->
-                <img src="media/projects/webq.jpg" alt="WebQ Solutions brand identity — logo on dark background" class="project-card__image" />
-                <div class="project-card__overlay">
-                  <span class="project-card__view">View Project ↗</span>
-                </div>
-              </div>
-              <div class="project-card__info">
-                <div class="project-card__meta">
-                  <span class="project-card__cat">Brand Identity · Brand Manager</span>
-                  <span class="project-card__year">2024</span>
-                </div>
-                <!-- A2: visually-hidden screen reader text -->
-                <h3 class="project-card__title">WebQ Solutions<span class="visually-hidden"> — View case study</span></h3>
-                <p class="project-card__desc">Complete brand identity and web presence for a digital solutions company — logo system, brand guidelines, and a high-converting WordPress website.</p>
-              </div>
-            </article>
-          </a>
+          <div class="svc svc--auto reveal">
+            <h3 class="svc__head">Automation <span>Make, n8n, Zapier, AI</span></h3>
+            <ul class="svc__list">
+              <li>
+                <h4>AI document and data processing</h4>
+                <p>Classify, summarise and extract from emails, files and forms, then return clean structured JSON your other tools can use.</p>
+              </li>
+              <li>
+                <h4>Lead capture and routing</h4>
+                <p>Capture enquiries, tag them by service or value, and route each one to the right person or follow-up sequence.</p>
+              </li>
+              <li>
+                <h4>Approval workflows and internal tools</h4>
+                <p>Submission forms, threshold rules and approval queues, so managers decide and the workflow handles the admin.</p>
+              </li>
+              <li>
+                <h4>Integrations and API glue</h4>
+                <p>Connect apps that don't talk to each other through REST APIs and webhooks, with authentication and data mapping set up correctly.</p>
+              </li>
+              <li>
+                <h4>Custom AI chatbots</h4>
+                <p>Chatbots for your website or messaging apps that answer from your own content and hand off to a person when they can't.</p>
+              </li>
+              <li>
+                <h4>Voice agents</h4>
+                <p>AI voice agents that answer calls, qualify callers and book or route them, with a transcript and a handoff to your team.</p>
+              </li>
+              <li>
+                <h4>Workflow rescue</h4>
+                <p>An existing automation is failing, duplicating or quietly dropping data. I trace the requests, fix the mapping and add the checks it was missing.</p>
+              </li>
+            </ul>
+          </div>
 
-          <!-- Project 2 -->
-          <a href="#projects" class="project-card-link">
-            <article class="project-card reveal">
-              <div class="project-card__image-wrap">
-                <img src="media/projects/seokits.jpg" alt="SEO Kits — web design and brand identity on white background" class="project-card__image" />
-                <div class="project-card__overlay">
-                  <span class="project-card__view">View Project ↗</span>
-                </div>
-              </div>
-              <div class="project-card__info">
-                <div class="project-card__meta">
-                  <span class="project-card__cat">Web Design</span>
-                  <span class="project-card__year">2024</span>
-                </div>
-                <h3 class="project-card__title">SEO Kits<span class="visually-hidden"> — View case study</span></h3>
-                <p class="project-card__desc">Strategic brand identity and web design for a digital SEO product — positioned for clarity and authority in a competitive market.</p>
-              </div>
-            </article>
-          </a>
+          <div class="svc svc--brand reveal">
+            <h3 class="svc__head">Brand &amp; design <span>Identity, web, strategy</span></h3>
+            <ul class="svc__list">
+              <li>
+                <h4>Brand identity design</h4>
+                <p>Logo suites, colour palettes, typography and brand guidelines, built to last well past the launch.</p>
+              </li>
+              <li>
+                <h4>WordPress web design</h4>
+                <p>Responsive WordPress sites with Elementor builds and custom styling, designed around how visitors actually use them.</p>
+              </li>
+              <li>
+                <h4>Custom web development &amp; e-commerce</h4>
+                <p>Custom-built websites and online stores, made for speed and conversion, with payments, product management and analytics set up.</p>
+              </li>
+              <li>
+                <h4>UI/UX design</h4>
+                <p>Wireframes, prototypes and interface systems for web and mobile products.</p>
+              </li>
+              <li>
+                <h4>Brand strategy</h4>
+                <p>Positioning, audience research and messaging, so the design has something clear to say.</p>
+              </li>
+            </ul>
+          </div>
 
-          <!-- Project 3 -->
-          <a href="#projects" class="project-card-link">
-            <article class="project-card reveal">
-              <div class="project-card__image-wrap">
-                <img src="media/projects/ewie.jpg" alt="Ewie brand identity — logo mark on neutral background" class="project-card__image" />
-                <div class="project-card__overlay">
-                  <span class="project-card__view">View Project ↗</span>
-                </div>
-              </div>
-              <div class="project-card__info">
-                <div class="project-card__meta">
-                  <span class="project-card__cat">Brand Identity</span>
-                  <span class="project-card__year">2025</span>
-                </div>
-                <h3 class="project-card__title">Ewie · Brand Identity Design<span class="visually-hidden"> — View case study</span></h3>
-                <p class="project-card__desc">Developed a modern and strategic brand identity focused on clarity, recognition, and a strong visual presence that reflects the brand's vision and professionalism.</p>
-              </div>
-            </article>
-          </a>
+        </div>
 
-          <!-- Project 4 -->
-          <a href="#projects" class="project-card-link">
-            <article class="project-card reveal">
-              <div class="project-card__image-wrap">
-                <img src="media/projects/queuesigns.jpg" alt="Queuesigns digital signage brand — marketing collateral mockup" class="project-card__image" />
-                <div class="project-card__overlay">
-                  <span class="project-card__view">View Project ↗</span>
-                </div>
-              </div>
-              <div class="project-card__info">
-                <div class="project-card__meta">
-                  <span class="project-card__cat">Brand Identity · Marketing</span>
-                  <span class="project-card__year">2024</span>
-                </div>
-                <h3 class="project-card__title">Queuesigns<span class="visually-hidden"> — View case study</span></h3>
-                <p class="project-card__desc">Comprehensive brand identity and marketing collateral for a hardware-free digital signage platform targeting modern businesses.</p>
-              </div>
-            </article>
-          </a>
-
-          <!-- Project 5 -->
-          <a href="#projects" class="project-card-link">
-            <article class="project-card project-card--large reveal">
-              <div class="project-card__image-wrap">
-                <img src="media/projects/bee-ileewa.jpg" alt="Bee-Ileewa House of Beauty — feminine brand identity layout" class="project-card__image" />
-                <div class="project-card__overlay">
-                  <span class="project-card__view">View Project ↗</span>
-                </div>
-              </div>
-              <div class="project-card__info">
-                <div class="project-card__meta">
-                  <span class="project-card__cat">Brand Identity · Lifestyle</span>
-                  <span class="project-card__year">2023</span>
-                </div>
-                <h3 class="project-card__title">Bee-Ileewa: House of Beauty<span class="visually-hidden"> — View case study</span></h3>
-                <p class="project-card__desc">Elegant brand identity for a premium beauty brand — feminine, refined, and deeply intentional visual language that resonates with the modern African woman.</p>
-              </div>
-            </article>
-          </a>
-
+        <div class="audit reveal">
+          <div>
+            <h3 class="audit__title">Not sure what to automate first?</h3>
+            <p>Send me the task your team repeats most often. I'll reply with how I'd automate it and what it would take.</p>
+          </div>
+          <a href="#contact" class="btn">Get a free workflow audit</a>
         </div>
       </div>
     </section>
 
-    <!-- ========================= EXPERIENCE SECTION ========================= -->
-    <section class="experience section" id="experience">
+    <!-- ============ PROCESS ============ -->
+    <section class="section process" id="process">
       <div class="container">
         <div class="section__head reveal">
-          <div class="section__label">Experience</div>
+          <p class="label">How I work</p>
+          <h2 class="section__title">Most of the work is <em>planning for failure.</em></h2>
+          <p class="section__sub">Getting a workflow to run once is easy. My process spends most of its time on what happens when inputs are messy or an API fails.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__n" aria-hidden="true">1</span>
+            <h3>Map</h3>
+            <p>We walk through the process as it runs today, covering inputs, decisions, owners and edge cases, before any tool is chosen.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n" aria-hidden="true">2</span>
+            <h3>Build</h3>
+            <p>I build the workflow in Make, n8n or Zapier, with AI steps only where they beat plain logic.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n" aria-hidden="true">3</span>
+            <h3>Break it on purpose</h3>
+            <p>I test it with bad input, missing fields, API errors and duplicates. Each failure path gets a fallback or a human-review step.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n" aria-hidden="true">4</span>
+            <h3>Hand over</h3>
+            <p>You get written documentation of the logic, credentials, dependencies and what to do when something alerts.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ TOOLKIT ============ -->
+    <section class="section toolkit" id="toolkit">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="label">Toolkit</p>
+          <h2 class="section__title">What I build <em>with.</em></h2>
+        </div>
+
+        <dl class="tools reveal">
+          <div><dt>Automation</dt><dd>Make, n8n, Zapier, Power Automate</dd></div>
+          <div><dt>AI models</dt><dd>OpenAI, Claude, OpenRouter, DeepSeek, SiliconFlow</dd></div>
+          <div><dt>APIs &amp; data</dt><dd>REST APIs, Webhooks, OAuth2, JSON, Airtable, Google Drive</dd></div>
+          <div><dt>Reliability</dt><dd>Error handling, Validation, Fallback logic, Monitoring, Documentation</dd></div>
+          <div><dt>Platforms</dt><dd>Google Workspace, Microsoft 365, WordPress</dd></div>
+          <div><dt>Build tools</dt><dd>Lovable, Claude, GitHub, Elementor</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section experience" id="experience">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="label">Experience</p>
           <h2 class="section__title">Where I've <em>built</em> and led.</h2>
         </div>
 
-        <div class="experience__timeline">
+        <ol class="timeline">
+          <li class="job reveal">
+            <p class="job__date">Nov 2022 &ndash; now</p>
+            <div>
+              <h3 class="job__role">NOC Engineer</h3>
+              <p class="job__org">Pan African Towers</p>
+              <p class="job__desc">Network Operations Centre role, monitoring network infrastructure and responding to incidents.</p>
+            </div>
+          </li>
+          <li class="job job--auto reveal">
+            <p class="job__date">Now</p>
+            <div>
+              <h3 class="job__role">AI Automation Specialist</h3>
+              <p class="job__org">Freelance &amp; personal builds</p>
+              <p class="job__desc">Designing, building and testing Make, n8n and AI workflows: lead routing, document processing and approval systems.</p>
+            </div>
+          </li>
+          <li class="job reveal">
+            <p class="job__date">2025 &ndash; now</p>
+            <div>
+              <h3 class="job__role">Founder</h3>
+              <p class="job__org">Tech for Teens</p>
+              <p class="job__desc">Teaching practical tech and creative skills to teenagers from low-income backgrounds, through workshops and mentorship.</p>
+            </div>
+          </li>
+          <li class="job job--brand reveal">
+            <p class="job__date">2023 &ndash; now</p>
+            <div>
+              <h3 class="job__role">Brand Manager</h3>
+              <p class="job__org">WebQ Solutions</p>
+              <p class="job__desc">Leading brand identity, visual communication and digital presence: design consistency, brand strategy, client-facing assets and market positioning.</p>
+            </div>
+          </li>
+          <li class="job reveal">
+            <p class="job__date">2021 &ndash; 2023</p>
+            <div>
+              <h3 class="job__role">Data Analysis Instructor</h3>
+              <p class="job__org">Gegas Africa</p>
+              <p class="job__desc">Delivered data analysis training and mentored young professionals in practical digital tools.</p>
+            </div>
+          </li>
+          <li class="job job--brand reveal">
+            <p class="job__date">2016 &ndash; now</p>
+            <div>
+              <h3 class="job__role">Founder &amp; Creative Director</h3>
+              <p class="job__org">Acmes Media</p>
+              <p class="job__desc">Web, branding and content projects, turning client requirements into defined processes and delivered work.</p>
+            </div>
+          </li>
 
-          <div class="exp-item reveal">
-            <div class="exp-item__left">
-              <div class="exp-item__dot"></div>
-              <div class="exp-item__line"></div>
-            </div>
-            <div class="exp-item__content">
-              <div class="exp-item__meta">
-                <span class="exp-item__date">2023 — Present</span>
-                <span class="exp-item__type">Full-Time</span>
-              </div>
-              <h3 class="exp-item__role">Brand Manager</h3>
-              <p class="exp-item__company">WebQ Solutions</p>
-              <p class="exp-item__desc">Leading brand identity, visual communication, and digital presence for WebQ Solutions — overseeing design consistency, brand strategy, client-facing assets, and the company's overall brand positioning in the market.</p>
-              <div class="exp-item__tags">
-                <span>Brand Management</span>
-                <span>Creative Direction</span>
-                <span>Strategy</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="exp-item reveal">
-            <div class="exp-item__left">
-              <div class="exp-item__dot"></div>
-              <div class="exp-item__line"></div>
-            </div>
-            <div class="exp-item__content">
-              <div class="exp-item__meta">
-                <span class="exp-item__date">2025 — Present</span>
-                <span class="exp-item__type">Founder</span>
-              </div>
-              <h3 class="exp-item__role">Founder &amp; Creative Lead</h3>
-              <p class="exp-item__company">Tech for Teens</p>
-              <p class="exp-item__desc">Founded and lead a technology education initiative committed to equipping young people with practical digital and design skills — shaping the next generation of creative professionals across Nigeria.</p>
-              <div class="exp-item__tags">
-                <span>Education</span>
-                <span>Leadership</span>
-                <span>Mentorship</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="exp-item reveal">
-            <div class="exp-item__left">
-              <div class="exp-item__dot exp-item__dot--end"></div>
-            </div>
-            <div class="exp-item__content">
-              <div class="exp-item__meta">
-                <span class="exp-item__date">2021 — 2023</span>
-                <span class="exp-item__type">Instructor</span>
-              </div>
-              <h3 class="exp-item__role">Data Analysis Instructor</h3>
-              <p class="exp-item__company">Gegas Africa</p>
-              <p class="exp-item__desc">Designed and delivered creative and digital skills training programs — mentoring young professionals in brand design, digital tools, and professional creative practice.</p>
-              <div class="exp-item__tags">
-                <span>Teaching</span>
-                <span>Data Analysis Training</span>
-                <span>Youth Development</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        </ol>
       </div>
     </section>
 
-    <!-- ========================= TECH FOR TEENS SECTION ========================= -->
-    <section class="tft section" id="tech-for-teens">
-      <div class="tft__bg-glow"></div>
-      <div class="container">
-        <div class="tft__grid">
-
-          <div class="tft__content">
-            <div class="section__label reveal">Initiative</div>
-            <h2 class="section__title reveal">
-              Building the next generation of <em>digital creators.</em>
-            </h2>
-            <p class="tft__text reveal">
-              Tech for Teens is my commitment to a future where every young person — regardless of background — has the tools, knowledge, and confidence to participate meaningfully in the digital economy.
-            </p>
-            <p class="tft__text reveal">
-              Through practical workshops, mentorship programs, and hands-on creative training, we're building a community of young innovators who don't just consume technology — they create with it.
-            </p>
-            <a href="#contact" class="btn btn--primary reveal">Partner With Us</a>
-          </div>
-
-          <div class="tft__pillars">
-            <!-- A5: h4 → h3 in .tft-pillar elements -->
-            <div class="tft-pillar reveal">
-              <div class="tft-pillar__icon">🎓</div>
-              <h3>Education</h3>
-              <p>Practical, skills-first digital education designed for real-world application.</p>
-            </div>
-            <div class="tft-pillar reveal">
-              <div class="tft-pillar__icon">🤝</div>
-              <h3>Mentorship</h3>
-              <p>One-on-one guidance from working professionals who've been in the trenches.</p>
-            </div>
-            <div class="tft-pillar reveal">
-              <div class="tft-pillar__icon">💡</div>
-              <h3>Innovation</h3>
-              <p>Encouraging creative thinking, entrepreneurship, and problem-solving through technology.</p>
-            </div>
-            <div class="tft-pillar reveal">
-              <div class="tft-pillar__icon">🌍</div>
-              <h3>Community Impact</h3>
-              <p>Growing a pan-African community of empowered young digital professionals.</p>
-            </div>
-          </div>
-
+    <!-- ============ TECH FOR TEENS ============ -->
+    <section class="section tft" id="tech-for-teens">
+      <div class="container tft__grid">
+        <div class="tft__copy">
+          <p class="label reveal">Initiative</p>
+          <h2 class="section__title reveal">Building the next generation of <em>digital creators.</em></h2>
+          <p class="reveal">Tech for Teens teaches practical tech and creative skills to teenagers from low-income backgrounds, so more young people can take part in the digital economy.</p>
+          <p class="reveal">Through hands-on workshops and one-to-one mentorship, students move from consuming technology to creating with it.</p>
+          <a href="#contact" class="btn btn--ghost reveal">Partner with Tech for Teens</a>
         </div>
+
+        <ul class="pillars">
+          <li class="pillar reveal"><h3>Education</h3><p>Skills-first digital education built for real-world use.</p></li>
+          <li class="pillar reveal"><h3>Mentorship</h3><p>One-to-one guidance from working professionals.</p></li>
+          <li class="pillar reveal"><h3>Innovation</h3><p>Creative thinking and problem-solving through technology.</p></li>
+          <li class="pillar reveal"><h3>Community impact</h3><p>A growing community of young digital professionals across Africa.</p></li>
+        </ul>
       </div>
     </section>
 
-    <!-- ========================= TESTIMONIALS SECTION ========================= -->
-    <section class="testimonials section" id="testimonials">
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section testimonials" id="testimonials">
       <div class="container">
         <div class="section__head reveal">
-          <div class="section__label">Testimonials</div>
+          <p class="label">Testimonials</p>
           <h2 class="section__title">What clients <em>say.</em></h2>
         </div>
 
-        <div class="testimonials__slider" id="testimonials-slider">
+        <div class="quotes">
+          <!-- NEED: automation client quotes. Add a figure.quote--auto here for ExpenseIQ, AI Document Filing or Lead Capture & Routing once a real quote exists. -->
+          <figure class="quote reveal">
+            <blockquote>Obaloluwa is the rare kind of designer who truly listens. Our WordPress website exceeded every expectation. It's beautifully designed, fast, and built with a clear understanding of our business goals.</blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">JO</span>
+              <span><strong>John Omotayo</strong><br />CEO, GraceApp</span>
+              <span class="quote__proj">WordPress website</span>
+            </figcaption>
+          </figure>
 
-          <div class="testimonial-card active">
-            <!-- A24: Decorative quotation mark is aria-hidden -->
-            <div class="testimonial-card__quote" aria-hidden="true">"</div>
-            <p class="testimonial-card__text">Obaloluwa is the rare kind of designer who truly listens. Our WordPress website exceeded every expectation — beautifully designed, fast, and built with a clear understanding of our business goals.</p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">JT</div>
-              <div>
-                <strong>John Omotayo</strong>
-                <span>CEO, GraceApp</span>
-              </div>
-            </div>
-          </div>
+          <figure class="quote reveal">
+            <blockquote>Working with Obaloluwa transformed how we present our brand. He didn't just design a logo. He built us a complete identity system that speaks directly to our audience, and the strategic thinking behind every decision was outstanding.</blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">OO</span>
+              <span><strong>Omobolanle Oyetola</strong><br />Founder, Bee-Ileewa Beauty</span>
+              <span class="quote__proj">Bee-Ileewa: House of Beauty</span>
+            </figcaption>
+          </figure>
 
-          <div class="testimonial-card">
-            <div class="testimonial-card__quote" aria-hidden="true">"</div>
-            <p class="testimonial-card__text">Working with Obaloluwa transformed how we present our brand. He didn't just design a logo — he built us a complete identity system that speaks directly to our audience. The strategic thinking behind every decision was outstanding.</p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">OO</div>
-              <div>
-                <strong>Omobolanle Oyetola</strong>
-                <span>Founder, Bee-Ileewa Beauty</span>
-              </div>
-            </div>
-          </div>
+          <figure class="quote reveal">
+            <blockquote>The brand identity he created for us set us apart in the market immediately. Professional, strategic and deeply creative. Obaloluwa brought a level of intentionality we hadn't experienced with any designer before.</blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">OA</span>
+              <span><strong>Oluwatobi Adeleke</strong><br />CEO, Queuesigns</span>
+              <span class="quote__proj">Queuesigns</span>
+            </figcaption>
+          </figure>
 
-          <div class="testimonial-card">
-            <div class="testimonial-card__quote" aria-hidden="true">"</div>
-            <p class="testimonial-card__text">The brand identity he created for us set us apart in the market immediately. Professional, strategic, and deeply creative — Obaloluwa brought a level of intentionality that we hadn't experienced with any designer before.</p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">OA</div>
-              <div>
-                <strong>Oluwatobi Adeleke</strong>
-                <span>CEO, Queuesigns</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-card__quote" aria-hidden="true">"</div>
-            <p class="testimonial-card__text">His Tech for Teens program changed my perspective on what's possible. I went from knowing nothing about design to building real projects within weeks. Obaloluwa is a gifted teacher and mentor.</p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">SI</div>
-              <div>
-                <strong>Samuel Idowu</strong>
-                <span>Student · Tech for Teens</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="testimonials__controls">
-          <button class="testimonials__btn" id="prev-testimonial" aria-label="Previous testimonial">←</button>
-          <!-- A19: Dots generated as <button> elements in JS — container only here -->
-          <div class="testimonials__dots" id="testimonials-dots"></div>
-          <button class="testimonials__btn" id="next-testimonial" aria-label="Next testimonial">→</button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================= CERTIFICATIONS SECTION ========================= -->
-     <!--
-    <section class="certifications section" id="certifications">
-      <div class="container">
-        <div class="section__head reveal">
-          <div class="section__label">Credentials</div>
-          <h2 class="section__title">Recognized <em>expertise.</em></h2>
-        </div>
-
-        <div class="certs__grid">
-
-          <div class="cert-card reveal">
-            <div class="cert-card__icon">🏅</div>
-            <div class="cert-card__content">
-              <h3>Brand Identity Design</h3>
-              <p>Professional certification in brand identity systems and visual identity strategy.</p>
-              <span class="cert-card__org">Design Institute</span>
-            </div>
-          </div>
-
-          <div class="cert-card reveal">
-            <div class="cert-card__icon">🏅</div>
-            <div class="cert-card__content">
-              <h3>WordPress Development</h3>
-              <p>Advanced certification in WordPress web design, theme customization, and site architecture.</p>
-              <span class="cert-card__org">WordPress Academy</span>
-            </div>
-          </div>
-
-          <div class="cert-card reveal">
-            <div class="cert-card__icon">🏅</div>
-            <div class="cert-card__content">
-              <h3>UI/UX Design Fundamentals</h3>
-              <p>Certified in user experience design principles, usability testing, and interface design.</p>
-              <span class="cert-card__org">UX Design Institute</span>
-            </div>
-          </div>
-
-          <div class="cert-card reveal">
-            <div class="cert-card__icon">🏅</div>
-            <div class="cert-card__content">
-              <h3>Brand Management</h3>
-              <p>Professional certification in strategic brand management, positioning, and brand communication.</p>
-              <span class="cert-card__org">CIM — Chartered Institute</span>
-            </div>
-          </div>
-
-          <div class="cert-card reveal">
-            <div class="cert-card__icon">🏅</div>
-            <div class="cert-card__content">
-              <h3>Digital Marketing Strategy</h3>
-              <p>Certification in digital marketing, brand visibility, and content strategy fundamentals.</p>
-              <span class="cert-card__org">Google Digital Skills</span>
-            </div>
-          </div>
-
-          <div class="cert-card reveal">
-            <div class="cert-card__icon">🏅</div>
-            <div class="cert-card__content">
-              <h3>Graphic Design Professional</h3>
-              <p>Industry-recognized certification in graphic design tools, composition, and visual communication.</p>
-              <span class="cert-card__org">Adobe Certified Professional</span>
-            </div>
-          </div>
-
+          <figure class="quote reveal">
+            <blockquote>His Tech for Teens program changed my perspective on what's possible. I went from knowing nothing about design to building real projects within weeks. Obaloluwa is a gifted teacher and mentor.</blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">SI</span>
+              <span><strong>Samuel Idowu</strong><br />Student, Tech for Teens</span>
+              <span class="quote__proj">Tech for Teens</span>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
-    -->
 
-    <!-- ========================= CONTACT SECTION ========================= -->
-    <section class="contact section" id="contact">
-      <div class="contact__bg-glow"></div>
-      <div class="container">
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <div class="container contact__grid">
 
-        <div class="contact__grid">
+        <div class="contact__left">
+          <p class="label reveal">Contact</p>
+          <h2 class="section__title reveal">Have a process to automate, or a brand to <em>build?</em></h2>
+          <p class="reveal">Tell me about one manual process, such as invoices, lead follow-ups, approvals or reports. I'll reply with how I'd automate it and how it could fail. Brand and website enquiries are welcome too.</p>
 
-          <div class="contact__left">
-            <div class="section__label reveal">Get In Touch</div>
-            <h2 class="section__title reveal">Let's build something <em>remarkable.</em></h2>
-            <p class="contact__text reveal">Whether you need a brand identity, a WordPress website, or a full brand strategy — I'd love to hear about your project. Let's create something that works.</p>
+          <a class="call reveal" href="https://calendly.com/ade-enoch01/30min" target="_blank" rel="noopener noreferrer">
+            <span><strong>Prefer to talk? Book a call</strong><br />Pick a time that suits you on Calendly.</span>
+            <span aria-hidden="true">&nearr;</span>
+          </a>
 
-            <div class="contact__info reveal">
-              <a href="mailto:ade.enoch01@gmail.com" class="contact__info-item">
-                <span class="contact__info-icon">✉</span>
-                <span>ade.enoch01@gmail.com</span>
-              </a>
-              <a href="tel:+2348065134373" class="contact__info-item">
-                <span class="contact__info-icon">✆</span>
-                <span>+234 806 513 4373</span>
-              </a>
-              <div class="contact__info-item">
-                <span class="contact__info-icon">◎</span>
-                <span>Lagos, Nigeria</span>
-              </div>
-            </div>
-
-            <div class="contact__socials reveal">
-              <!-- A6: Fixed aria-label — LinkedIn link now correctly labelled -->
-              <a href="https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4/" class="contact__social" aria-label="LinkedIn">in</a>
-              <!-- <a href="#" class="contact__social" aria-label="Behance">Be</a> -->
-              <!-- <a href="#" class="contact__social" aria-label="Dribbble">Dr</a> -->
-              <!-- A6: Instagram link corrected — TODO: replace href with real Instagram URL when available -->
-              <a href="#" class="contact__social" aria-label="Instagram">Ig</a>
-            </div>
-          </div>
-
-          <div class="contact__form-wrap reveal">
-            <form class="contact__form" id="contact-form" novalidate
-      action="https://formspree.io/f/xojrgrlr"
-      method="POST">
-
-              <!-- A15: Required fields note -->
-              <p class="form-note"><span aria-hidden="true">*</span> Required fields</p>
-
-              <div class="form-group">
-                <!-- A15: Required label asterisk + aria attributes on input -->
-                <label for="name">Full Name <span aria-hidden="true">*</span></label>
-                <input type="text" id="name" name="name" placeholder="Your full name" required
-                  aria-describedby="name-error" aria-required="true" />
-                <!-- A15: aria-live on error span -->
-                <span class="form-error" id="name-error" aria-live="polite"></span>
-              </div>
-              <div class="form-group">
-                <label for="email">Email Address <span aria-hidden="true">*</span></label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required
-                  aria-describedby="email-error" aria-required="true" />
-                <span class="form-error" id="email-error" aria-live="polite"></span>
-              </div>
-              <div class="form-group">
-                <label for="service">Service Needed</label>
-                <select id="service" name="service">
-                  <option value="">Select a service...</option>
-                  <option value="brand-identity">Brand Identity Design</option>
-                  <option value="web-design">WordPress Web Design</option>
-                  <option value="ui-ux">UI/UX Design</option>
-                  <option value="brand-strategy">Brand Strategy</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="message">Project Brief <span aria-hidden="true">*</span></label>
-                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, goals, and timeline..." required
-                  aria-describedby="message-error" aria-required="true"></textarea>
-                <span class="form-error" id="message-error" aria-live="polite"></span>
-              </div>
-
-              <!-- A16: Accessible status message instead of alert() -->
-              <div id="form-status" role="status" aria-live="polite" class="form-status"></div>
-
-              <button type="submit" class="btn btn--primary btn--full">
-                <span class="btn__text">Send Message</span>
-                <span class="btn__icon">→</span>
-              </button>
-              <div class="form-success" id="form-success">
-                ✓ Message sent! I'll be in touch within 24 hours.
-              </div>
-            </form>
-          </div>
-
+          <dl class="contact__info reveal">
+            <div><dt>Email</dt><dd><a href="mailto:ade.enoch01@gmail.com">ade.enoch01@gmail.com</a></dd></div>
+            <div><dt>Phone</dt><dd><a href="tel:+2348065134373">+234 806 513 4373</a></dd></div>
+            <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4" target="_blank" rel="noopener noreferrer">Connect with me</a></dd></div>
+            <div><dt>GitHub</dt><dd><a href="https://github.com/obaloluwaadeleke" target="_blank" rel="noopener noreferrer">obaloluwaadeleke</a></dd></div>
+            <div><dt>Location</dt><dd>Lagos, Nigeria</dd></div>
+            <div><dt>Availability</dt><dd>Open to full-time remote or hybrid roles and freelance builds</dd></div>
+          </dl>
         </div>
+
+        <div class="contact__form-wrap reveal">
+          <form class="form" id="contact-form" novalidate action="https://formspree.io/f/xojrgrlr" method="POST">
+            <p class="form__note"><span aria-hidden="true">*</span> Required fields</p>
+
+            <div class="field">
+              <label for="name">Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" autocomplete="name" required aria-required="true" aria-describedby="name-error" />
+              <span class="field__error" id="name-error" aria-live="polite"></span>
+            </div>
+
+            <div class="field">
+              <label for="email">Email <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="you@company.com" required aria-required="true" aria-describedby="email-error" />
+              <span class="field__error" id="email-error" aria-live="polite"></span>
+            </div>
+
+            <div class="field">
+              <label for="company">Company (optional)</label>
+              <input type="text" id="company" name="company" autocomplete="organization" />
+            </div>
+
+            <div class="field">
+              <label for="topic">What's it about?</label>
+              <select id="topic" name="topic">
+                <option value="">Choose one</option>
+                <option>Lead capture &amp; routing</option>
+                <option>Documents &amp; data processing</option>
+                <option>Approvals &amp; internal tools</option>
+                <option>Connecting apps / APIs</option>
+                <option>Fixing an existing automation</option>
+                <option>AI chatbot or voice agent</option>
+                <option>Brand identity or website</option>
+                <option>Custom website or e-commerce store</option>
+                <option>Tech for Teens partnership</option>
+                <option>Hiring for a role</option>
+                <option>Something else</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="message">The process or project <span aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" rows="5" placeholder="What happens today, who does it, and how often?" required aria-required="true" aria-describedby="message-error"></textarea>
+              <span class="field__error" id="message-error" aria-live="polite"></span>
+            </div>
+
+            <div id="form-status" class="form__status" role="status" aria-live="polite"></div>
+
+            <button type="submit" class="btn btn--full"><span class="btn__text">Send message</span></button>
+          </form>
+        </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- ========================= FOOTER ========================= -->
+  <!-- ============ FOOTER ============ -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-
-        <div class="footer__brand">
-          <div class="footer__logo">OBA<span class="footer__logo-dot">.</span></div>
-          <p class="footer__tagline">Strategy meets creativity in everything I build.</p>
-          <p class="footer__sub">Brand Identity Designer · WordPress Web Designer · Brand Manager</p>
-        </div>
-
-        <div class="footer__links">
-          <!-- A5: h5 → h2 with footer__heading class -->
-          <h2 class="footer__heading">Navigation</h2>
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#projects">Work</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#tech-for-teens">Tech for Teens</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer__links">
-          <!-- A5: h5 → h2 with footer__heading class -->
-          <h2 class="footer__heading">Services</h2>
-          <ul>
-            <!-- A7: Updated to deep-link into specific service cards -->
-            <li><a href="#service-brand-identity">Brand Identity Design</a></li>
-            <li><a href="#service-wordpress">WordPress Web Design</a></li>
-            <!-- NOTE: UI/UX card uses #service-brand-strategy id per mapping in services section above -->
-            <li><a href="#service-brand-strategy">UI/UX Design</a></li>
-            <li><a href="#service-creative-direction">Brand Strategy</a></li>
-          </ul>
-        </div>
-
-        <div class="footer__connect">
-          <!-- A5: h5 → h2 with footer__heading class -->
-          <h2 class="footer__heading">Connect</h2>
-          <div class="footer__socials">
-            <!-- A6: Fixed — both links now correctly labelled -->
-            <a href="https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4/">LinkedIn</a>
-            <!-- <a href="#">Behance</a> -->
-            <!-- <a href="#">Dribbble</a> -->
-            <!-- A6: Instagram label/link corrected — TODO: replace href with real Instagram URL -->
-            <a href="#">Instagram</a>
-          </div>
-          <!-- Section 2: Footer location emoji fix -->
-          <p class="footer__location"><span aria-hidden="true">📍</span> <span>Lagos, Nigeria</span></p>
-        </div>
-
+    <div class="container footer__grid">
+      <div>
+        <p class="footer__logo">OBA<span>.</span></p>
+        <p class="footer__tag">AI Automation Specialist &middot; Brand Identity Designer &middot; Web Designer</p>
       </div>
-
-      <div class="footer__bottom">
-        <p>© 2025 Obaloluwa Enoch Adeleke. All rights reserved.</p>
-        <p>Designed with purpose. Built with precision.</p>
-      </div>
-
+      <nav aria-label="Footer">
+        <ul class="footer__links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://obaloluwa-automates.vercel.app/" target="_blank" rel="noopener noreferrer">Automation portfolio <span aria-hidden="true">&nearr;</span></a></li>
+          <li><a href="https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://github.com/obaloluwaadeleke" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>&copy; <span id="year">2026</span> Obaloluwa Enoch Adeleke. Lagos, Nigeria.</p>
     </div>
   </footer>
 
-  <!-- Back to Top -->
-  <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+  <button class="to-top" id="to-top" aria-label="Back to top" type="button">&uarr;</button>
 
-  <!-- Person JSON-LD structured data -->
-  <!-- TODO: update to custom domain; replace [your-headshot-path] and [your-handle] with real values -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -946,25 +700,20 @@
     "name": "Obaloluwa Enoch Adeleke",
     "url": "https://obaloluwaadeleke.github.io/portfolio/",
     "image": "https://obaloluwaadeleke.github.io/portfolio/media/profile/headshot.jpg",
-    "jobTitle": "Brand Identity Designer & WordPress Web Designer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "WebQ Solutions"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Lagos",
-      "addressCountry": "NG"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4/",
-      "https://behance.net/[your-handle]"
+    "jobTitle": "AI Automation Specialist and Brand Designer",
+    "worksFor": [
+      { "@type": "Organization", "name": "WebQ Solutions" },
+      { "@type": "Organization", "name": "Acmes Media" }
     ],
-    "knowsAbout": ["Brand Identity Design", "WordPress Web Design", "Brand Strategy", "Brand Management"]
+    "address": { "@type": "PostalAddress", "addressLocality": "Lagos", "addressCountry": "NG" },
+    "sameAs": [
+      "https://www.linkedin.com/in/obaloluwa-adeleke-065a721b4",
+      "https://github.com/obaloluwaadeleke",
+      "https://obaloluwa-automates.vercel.app/"
+    ],
+    "knowsAbout": ["AI automation", "AI chatbots", "Voice agents", "Make", "n8n", "API integration", "Custom web development", "E-commerce", "Brand identity design", "WordPress web design", "Brand strategy"]
   }
   </script>
-
-  <!-- JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>

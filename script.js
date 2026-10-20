@@ -1,800 +1,315 @@
-/* =========================
-   script.js
-   Obaloluwa Enoch Adeleke — Portfolio
-   Vanilla JavaScript — Production Ready
-========================= */
-
 'use strict';
 
-// =========================
-// UTILITIES
-// =========================
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/**
- * Shorthand query selectors
- */
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
-
-/**
- * Run function after DOM is ready
- */
-const onReady = (fn) => {
-  if (document.readyState !== 'loading') fn();
-  else document.addEventListener('DOMContentLoaded', fn);
-};
-
-
-// =========================
-// PRELOADER
-// =========================
-
-const initPreloader = () => {
-  const preloader = $('#preloader');
-  if (!preloader) return;
-
-  // A17: If user prefers reduced motion, skip preloader entirely
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    preloader.style.display = 'none';
-    document.body.style.overflow = '';
-    return;
+// ---- Header state ----
+const header = $('#header');
+const toTop = $('#to-top');
+const progress = $('#progress');
+const onScroll = () => {
+  header.classList.toggle('scrolled', window.scrollY > 24);
+  toTop.classList.toggle('visible', window.scrollY > 600);
+  if (progress) {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
   }
-
-  // Section 2: Preloader duration capped at 600ms maximum
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      preloader.classList.add('loaded');
-      document.body.style.overflow = '';
-    }, 600);
-  });
-
-  // Prevent scroll during preload
-  document.body.style.overflow = 'hidden';
 };
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 
-
-// =========================
-// CUSTOM CURSOR
-// =========================
-
-const initCursor = () => {
-  const cursor = $('#cursor');
-  const follower = $('#cursor-follower');
-  if (!cursor || !follower) return;
-
-  // Only on non-touch devices
-  if (window.matchMedia('(pointer: coarse)').matches) {
-    cursor.style.display = 'none';
-    follower.style.display = 'none';
-    document.body.style.cursor = 'auto';
-    return;
-  }
-
-  let mouseX = 0, mouseY = 0;
-  let followerX = 0, followerY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
-  });
-
-  // Smooth follower animation loop
-  const animateFollower = () => {
-    followerX += (mouseX - followerX) * 0.12;
-    followerY += (mouseY - followerY) * 0.12;
-    follower.style.left = followerX + 'px';
-    follower.style.top = followerY + 'px';
-    requestAnimationFrame(animateFollower);
-  };
-  animateFollower();
-
-  // Hover effect on interactive elements
-  const hoverTargets = $$('a, button, .project-card, .service-card, .why-item, .cert-card, .tft-pillar, .testimonials__btn');
-
-  hoverTargets.forEach((el) => {
-    el.addEventListener('mouseenter', () => {
-      cursor.classList.add('cursor--hover');
-      follower.classList.add('cursor--hover');
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.classList.remove('cursor--hover');
-      follower.classList.remove('cursor--hover');
-    });
-  });
-
-  // Hide cursor when leaving window
-  document.addEventListener('mouseleave', () => {
-    cursor.style.opacity = '0';
-    follower.style.opacity = '0';
-  });
-  document.addEventListener('mouseenter', () => {
-    cursor.style.opacity = '1';
-    follower.style.opacity = '1';
-  });
-};
-
-
-// =========================
-// STICKY NAVBAR
-// =========================
-
-const initNavbar = () => {
-  const header = $('#header');
-  if (!header) return;
-
-  const handleScroll = () => {
-    if (window.scrollY > 60) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  };
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll(); // run on init
-};
-
-
-// =========================
-// MOBILE NAVIGATION
-// A4: Dialog pattern with focus trap, aria-expanded, Escape key
-// =========================
-
-const initMobileNav = () => {
+// ---- Mobile nav (dialog pattern: focus trap, Escape, restore focus) ----
+(() => {
   const burger = $('#nav-burger');
-  const mobileNav = $('#mobile-nav');
-  const mobileLinks = $$('.mobile-nav__link');
-  if (!burger || !mobileNav) return;
+  const nav = $('#mobile-nav');
+  let opener = null;
 
-  let previouslyFocusedElement = null;
-
-  // Returns all focusable elements inside the nav
-  const getFocusableElements = () => {
-    return Array.from(
-      mobileNav.querySelectorAll(
-        'a[href], button, [tabindex]:not([tabindex="-1"])'
-      )
-    ).filter((el) => !el.hasAttribute('disabled'));
+  const focusables = () => $$('a[href], button', nav);
+  const trap = (e) => {
+    if (e.key !== 'Tab') return;
+    const items = [burger, ...focusables()];
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   };
 
-  // Focus trap handler
-  const handleTrapFocus = (e) => {
-    if (e.key !== 'Tab') return;
-    const focusable = getFocusableElements();
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-
-    if (e.shiftKey) {
-      if (document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      }
+  const setOpen = (open) => {
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    burger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      opener = document.activeElement;
+      nav.hidden = false;
+      focusables()[0]?.focus();
+      document.addEventListener('keydown', trap);
     } else {
-      if (document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
+      nav.hidden = true;
+      document.removeEventListener('keydown', trap);
+      opener?.focus();
     }
   };
 
-  const openNav = () => {
-    previouslyFocusedElement = document.activeElement;
-    mobileNav.removeAttribute('hidden');
-    mobileNav.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    burger.setAttribute('aria-expanded', 'true');
-    burger.setAttribute('aria-label', 'Close menu');
-    burger.classList.add('open');
-    // Focus first focusable element inside dialog
-    const focusable = getFocusableElements();
-    if (focusable.length) focusable[0].focus();
-    mobileNav.addEventListener('keydown', handleTrapFocus);
+  burger.addEventListener('click', () => setOpen(nav.hidden));
+  $$('a', nav).forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !nav.hidden) setOpen(false); });
+  window.matchMedia('(min-width: 961px)').addEventListener('change', (e) => { if (e.matches && !nav.hidden) setOpen(false); });
+})();
+
+// ---- Active nav link ----
+(() => {
+  const links = $$('.nav__link');
+  const map = new Map(links.map((l) => [l.getAttribute('href').slice(1), l]));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      links.forEach((l) => l.classList.remove('active'));
+      map.get(en.target.id)?.classList.add('active');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  // observe every section so the highlight clears over sections without a nav link
+  $$('main > section[id]').forEach((s) => io.observe(s));
+})();
+
+// ---- Scroll reveal ----
+(() => {
+  const els = $$('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    els.forEach((el) => el.classList.add('visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('visible');
+      io.unobserve(en.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  els.forEach((el, i) => {
+    // stagger siblings that enter together, capped so late items never wait
+    const idx = $$(':scope > .reveal', el.parentElement).indexOf(el);
+    el.style.transitionDelay = `${Math.min(Math.max(idx, 0), 4) * 70}ms`;
+    io.observe(el);
+  });
+})();
+
+// ---- Run log game: break the workflow, watch it recover ----
+(() => {
+  const log = $('#runlog');
+  if (!log) return;
+  const panel = log.closest('.runlog');
+  const buttons = $$('.chaos');
+  const state = $('#runlog-state');
+  const prompt = $('#runlog-prompt');
+  const scoreEl = $('#runlog-score');
+  const runsEl = $('#runlog-runs');
+  const cta = $('#runlog-cta');
+
+  // [html, class, seconds since previous line]. Simulated runs, labelled as examples.
+  const SCENARIOS = {
+    intro: [
+      ['webhook received &middot; invoice_0412.pdf', '', 0],
+      ['<b class="t-auto">ai.extract</b> &rarr; vendor, amount, due_date', '', 1],
+      ['validate: amount missing &rarr; <b class="t-warn">retry</b>', '', 0],
+      ['validate: <b class="t-auto">ok</b>', '', 2],
+      ['airtable.create &rarr; rec_{id}', '', 0],
+      ['run complete &middot; 4.1s &middot; 0 dropped', 'runlog__done', 1],
+    ],
+    ok: [
+      ['webhook received &middot; invoice_0413.pdf', '', 0],
+      ['<b class="t-auto">ai.extract</b> &rarr; vendor, amount, due_date', '', 1],
+      ['validate: <b class="t-auto">ok</b>', '', 1],
+      ['airtable.create &rarr; rec_{id}', '', 1],
+      ['run complete &middot; 3.2s &middot; 0 dropped', 'runlog__done', 1],
+    ],
+    malformed: [
+      ['webhook received &middot; payload.json', '', 0],
+      ['parse error: unexpected token at position 41', '', 1],
+      ['<b class="t-warn">schema guard</b> &rarr; rejected before AI step', '', 0],
+      ['route &rarr; human-review queue', '', 1],
+      ['alert sent &rarr; #ops', '', 0],
+      ['run complete &middot; 1.8s &middot; 0 dropped', 'runlog__done', 1],
+    ],
+    empty: [
+      ['webhook received &middot; invoice_0414.pdf', '', 0],
+      ['<b class="t-auto">ai.extract</b> &rarr; <b class="t-warn">empty response</b>', '', 1],
+      ['guard: message content undefined &rarr; blank record blocked', '', 0],
+      ['retry 1/2 &rarr; <b class="t-auto">ok</b>', '', 2],
+      ['airtable.create &rarr; rec_{id}', '', 0],
+      ['run complete &middot; 6.4s &middot; 0 dropped', 'runlog__done', 1],
+    ],
+    duplicate: [
+      ['webhook received &middot; invoice_0412.pdf', '', 0],
+      ['webhook received &middot; invoice_0412.pdf', '', 0],
+      ['dedupe: key 0412 already processed &rarr; <b class="t-warn">skipped</b>', '', 1],
+      ['1 record created, 0 duplicates', '', 0],
+      ['run complete &middot; 2.1s &middot; 0 dropped', 'runlog__done', 1],
+    ],
+    token: [
+      ['webhook received &middot; invoice_0415.pdf', '', 0],
+      ['airtable.create &rarr; <b class="t-warn">401 token expired</b>', '', 1],
+      ['oauth2.refresh &rarr; <b class="t-auto">ok</b>', '', 1],
+      ['airtable.create (retry) &rarr; rec_{id}', '', 1],
+      ['run complete &middot; 5.0s &middot; 0 dropped', 'runlog__done', 1],
+    ],
+  };
+  const CHAOS = ['malformed', 'empty', 'duplicate', 'token'];
+
+  const handled = new Set();
+  let timers = [];
+  let clock = 9 * 3600 + 14 * 60 + 2;   // 09:14:02
+  let runs = 0;
+
+  const fmt = (t) => [Math.floor(t / 3600), Math.floor(t / 60) % 60, t % 60].map((n) => String(n).padStart(2, '0')).join(':');
+  const recId = () => `rec_${Math.random().toString(36).slice(2, 6)}\u2026`;
+
+  const addLine = ([html, cls, dt]) => {
+    clock += dt;
+    const li = document.createElement('li');
+    if (cls) li.className = cls;
+    const time = document.createElement('time');
+    time.textContent = fmt(clock);
+    const span = document.createElement('span');
+    span.innerHTML = html.replace('rec_{id}', recId());   // html is static, authored above
+    li.append(time, span);
+    log.append(li);
+    requestAnimationFrame(() => li.classList.add('on'));
   };
 
-  const closeNav = () => {
-    mobileNav.classList.remove('open');
-    document.body.style.overflow = '';
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', 'Open menu');
-    burger.classList.remove('open');
-    mobileNav.removeEventListener('keydown', handleTrapFocus);
-    // Restore focus to burger after a brief delay for transition
-    requestAnimationFrame(() => {
-      mobileNav.setAttribute('hidden', '');
-      if (previouslyFocusedElement) previouslyFocusedElement.focus();
-    });
+  const setBusy = (busy) => {
+    buttons.forEach((b) => { b.disabled = busy; });
+    state.textContent = busy ? 'running' : 'live';
   };
 
-  burger.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.contains('open');
-    isOpen ? closeNav() : openNav();
-  });
-
-  // Close on link click
-  mobileLinks.forEach((link) => {
-    link.addEventListener('click', closeNav);
-  });
-
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
-  });
-};
-
-
-// =========================
-// ACTIVE NAV LINK ON SCROLL
-// =========================
-
-const initActiveNavLinks = () => {
-  const sections = $$('section[id]');
-  const navLinks = $$('.nav__link');
-  if (!sections.length || !navLinks.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach((link) => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${id}`) {
-              link.classList.add('active');
-            }
-          });
-        }
-      });
-    },
-    { rootMargin: '-40% 0px -55% 0px' }
-  );
-
-  sections.forEach((section) => observer.observe(section));
-};
-
-
-// =========================
-// SMOOTH SCROLLING
-// =========================
-
-const initSmoothScroll = () => {
-  const anchors = $$('a[href^="#"]');
-
-  anchors.forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (href === '#') return;
-
-      const target = $(href);
-      if (!target) return;
-
-      e.preventDefault();
-
-      const navHeight = document.getElementById('header')?.offsetHeight || 80;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight;
-
-      window.scrollTo({
-        top: targetTop,
-        behavior: 'smooth',
-      });
-    });
-  });
-};
-
-
-// =========================
-// SCROLL REVEAL ANIMATIONS
-// =========================
-
-const initScrollReveal = () => {
-  const elements = $$('.reveal');
-  if (!elements.length) return;
-
-  // Add staggered delays within the same parent
-  const addStaggerDelay = () => {
-    const parents = new Map();
-
-    elements.forEach((el) => {
-      const parent = el.parentElement;
-      if (!parents.has(parent)) {
-        parents.set(parent, []);
-      }
-      parents.get(parent).push(el);
-    });
-
-    parents.forEach((children) => {
-      if (children.length > 1) {
-        children.forEach((child, i) => {
-          if (!child.style.transitionDelay) {
-            child.style.transitionDelay = `${i * 0.08}s`;
-          }
-        });
-      }
-    });
+  const finish = (key) => {
+    setBusy(false);
+    runs += 1;
+    if (CHAOS.includes(key) && !handled.has(key)) {
+      handled.add(key);
+      $(`[data-scenario="${key}"]`).classList.add('is-done');
+      $(`[data-pip="${key}"]`).classList.add('on');
+    }
+    scoreEl.textContent = `${handled.size} of 4 failures handled`;
+    runsEl.textContent = `${runs} run${runs === 1 ? '' : 's'} \u00b7 0 dropped`;
+    if (handled.size === CHAOS.length) {
+      panel.classList.add('runlog--won');
+      prompt.textContent = 'Every failure was caught, retried or routed to a person.';
+      cta.hidden = false;
+    } else if (key !== 'intro') {
+      const left = CHAOS.length - handled.size;
+      prompt.textContent = `${left} failure mode${left === 1 ? '' : 's'} left to try.`;
+    }
   };
 
-  addStaggerDelay();
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // animate once
-        }
-      });
-    },
-    { rootMargin: '0px 0px -60px 0px', threshold: 0.1 }
-  );
-
-  elements.forEach((el) => observer.observe(el));
-};
-
-
-// =========================
-// ANIMATED COUNTERS
-// =========================
-
-const initCounters = () => {
-  const counters = $$('[data-count]');
-  if (!counters.length) return;
-
-  // A17: If reduced motion, jump to final value immediately
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const animateCounter = (el) => {
-    const target = parseInt(el.getAttribute('data-count'), 10);
-
-    if (reducedMotion) {
-      el.textContent = target;
+  const play = (key) => {
+    timers.forEach(clearTimeout);
+    timers = [];
+    log.innerHTML = '';
+    setBusy(true);
+    const lines = SCENARIOS[key];
+    if (reduceMotion) {
+      lines.forEach(addLine);
+      finish(key);
       return;
     }
+    lines.forEach((line, i) => timers.push(setTimeout(() => addLine(line), 350 + i * 430)));
+    timers.push(setTimeout(() => finish(key), 350 + lines.length * 430 + 150));
+  };
 
-    const duration = 1800;
-    const startTime = performance.now();
+  buttons.forEach((b) => b.addEventListener('click', () => play(b.dataset.scenario)));
+  play('intro');
+})();
 
-    const ease = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // easeInOut
-
-    const update = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const value = Math.floor(ease(progress) * target);
-      el.textContent = value;
-
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        el.textContent = target;
+// ---- Work filter ----
+(() => {
+  const buttons = $$('.filter');
+  const cards = $$('#work-grid .card');
+  buttons.forEach((btn) => btn.addEventListener('click', () => {
+    const f = btn.dataset.filter;
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    cards.forEach((c) => {
+      const show = f === 'all' || c.dataset.track === f;
+      const wasHidden = c.hidden;
+      c.hidden = !show;
+      if (show && wasHidden && !reduceMotion) {
+        c.classList.add('is-entering');
+        c.addEventListener('animationend', () => c.classList.remove('is-entering'), { once: true });
       }
-    };
-
-    requestAnimationFrame(update);
-  };
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  counters.forEach((counter) => observer.observe(counter));
-};
-
-
-// =========================
-// TESTIMONIALS SLIDER
-// A19: Dots created as <button> elements (initKeyboardNav removed)
-// =========================
-
-const initTestimonialsSlider = () => {
-  const slider = $('#testimonials-slider');
-  const dotsContainer = $('#testimonials-dots');
-  const prevBtn = $('#prev-testimonial');
-  const nextBtn = $('#next-testimonial');
-  if (!slider) return;
-
-  const cards = $$('.testimonial-card');
-  let current = 0;
-  let autoPlayTimer = null;
-
-  // Build dots as <button> elements (A19: native button handles keyboard)
-  if (dotsContainer) {
-    cards.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.classList.add('testimonials__dot');
-      dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
-      if (i === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goTo(i));
-      dotsContainer.appendChild(dot);
     });
-  }
+  }));
+})();
 
-  const updateDots = (index) => {
-    $$('.testimonials__dot').forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
-    });
-  };
-
-  const goTo = (index) => {
-    cards[current].classList.remove('active');
-    current = (index + cards.length) % cards.length;
-    cards[current].classList.add('active');
-    updateDots(current);
-    resetAutoPlay();
-  };
-
-  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
-  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
-
-  // Keyboard navigation
-  slider.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') goTo(current - 1);
-    if (e.key === 'ArrowRight') goTo(current + 1);
-  });
-
-  // A17: Gate autoplay behind reduced-motion check
-  const startAutoPlay = () => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    autoPlayTimer = setInterval(() => goTo(current + 1), 5500);
-  };
-
-  const resetAutoPlay = () => {
-    clearInterval(autoPlayTimer);
-    startAutoPlay();
-  };
-
-  // Touch / swipe support
-  let touchStartX = 0;
-  slider.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].clientX;
-  }, { passive: true });
-
-  slider.addEventListener('touchend', (e) => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? goTo(current + 1) : goTo(current - 1);
-    }
-  });
-
-  startAutoPlay();
-};
-
-
-// =========================
-// BACK TO TOP BUTTON
-// =========================
-
-const initBackToTop = () => {
-  const btn = $('#back-to-top');
-  if (!btn) return;
-
-  window.addEventListener('scroll', () => {
-    btn.classList.toggle('visible', window.scrollY > 500);
-  }, { passive: true });
-
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-};
-
-
-// =========================
-// CONTACT FORM VALIDATION
-// A15: aria-invalid on showError/clearError
-// A16: Replace alert() with #form-status live region
-// =========================
-
-const initContactForm = () => {
+// ---- Contact form ----
+(() => {
   const form = $('#contact-form');
   if (!form) return;
-
-  const nameInput = $('#name');
-  const emailInput = $('#email');
-  const messageInput = $('#message');
-  const successMsg = $('#form-success');
-  const formStatus = $('#form-status');
-
-  const showError = (inputEl, errorId, message) => {
-    const errorEl = $(`#${errorId}`);
-    if (errorEl) errorEl.textContent = message;
-    if (inputEl) {
-      inputEl.classList.add('error');
-      // A15: mark invalid for screen readers
-      inputEl.setAttribute('aria-invalid', 'true');
-    }
+  const status = $('#form-status');
+  const rules = {
+    name:    (v) => (v ? '' : 'Enter your name.'),
+    email:   (v) => (!v ? 'Enter your email address.' : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'Enter a valid email address, like you@company.com.'),
+    message: (v) => (v ? '' : 'Describe the process or project in a sentence or two.'),
   };
 
-  const clearError = (inputEl, errorId) => {
-    const errorEl = $(`#${errorId}`);
-    if (errorEl) errorEl.textContent = '';
-    if (inputEl) {
-      inputEl.classList.remove('error');
-      // A15: clear invalid state
-      inputEl.removeAttribute('aria-invalid');
-    }
+  const check = (id) => {
+    const input = $(`#${id}`);
+    const msg = rules[id](input.value.trim());
+    $(`#${id}-error`).textContent = msg;
+    if (msg) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+    return !msg;
   };
 
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  Object.keys(rules).forEach((id) => $(`#${id}`).addEventListener('blur', () => check(id)));
 
-  // Live validation on blur
-  nameInput?.addEventListener('blur', () => {
-    if (!nameInput.value.trim()) {
-      showError(nameInput, 'name-error', 'Please enter your full name.');
-    } else {
-      clearError(nameInput, 'name-error');
-    }
-  });
-
-  emailInput?.addEventListener('blur', () => {
-    if (!emailInput.value.trim()) {
-      showError(emailInput, 'email-error', 'Please enter your email address.');
-    } else if (!validateEmail(emailInput.value)) {
-      showError(emailInput, 'email-error', 'Please enter a valid email address.');
-    } else {
-      clearError(emailInput, 'email-error');
-    }
-  });
-
-  messageInput?.addEventListener('blur', () => {
-    if (!messageInput.value.trim()) {
-      showError(messageInput, 'message-error', 'Please describe your project briefly.');
-    } else {
-      clearError(messageInput, 'message-error');
-    }
-  });
-
-  // Submit handler
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    status.className = 'form__status';
+    status.textContent = '';
+    const results = Object.keys(rules).map(check);
+    if (results.includes(false)) { $('[aria-invalid="true"]', form)?.focus(); return; }
 
-    let isValid = true;
-
-    // Validate name
-    if (!nameInput?.value.trim()) {
-      showError(nameInput, 'name-error', 'Please enter your full name.');
-      isValid = false;
-    } else {
-      clearError(nameInput, 'name-error');
-    }
-
-    // Validate email
-    if (!emailInput?.value.trim()) {
-      showError(emailInput, 'email-error', 'Please enter your email address.');
-      isValid = false;
-    } else if (!validateEmail(emailInput.value)) {
-      showError(emailInput, 'email-error', 'Please enter a valid email address.');
-      isValid = false;
-    } else {
-      clearError(emailInput, 'email-error');
-    }
-
-    // Validate message
-    if (!messageInput?.value.trim()) {
-      showError(messageInput, 'message-error', 'Please describe your project briefly.');
-      isValid = false;
-    } else {
-      clearError(messageInput, 'message-error');
-    }
-
-    if (isValid) {
-      const submitBtn = form.querySelector('[type="submit"]');
-      const btnText = submitBtn?.querySelector('.btn__text');
-
-      if (btnText) btnText.textContent = 'Sending...';
-      if (submitBtn) submitBtn.disabled = true;
-      // Clear any previous status
-      if (formStatus) formStatus.textContent = '';
-
-      const formData = new FormData(form);
-
-      fetch('https://formspree.io/f/xojrgrlr', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => {
-        if (response.ok) {
-          form.reset();
-          if (successMsg) successMsg.classList.add('show');
-          setTimeout(() => successMsg.classList.remove('show'), 5000);
-          // A16: Announce success via live region instead of alert()
-          if (formStatus) formStatus.textContent = "Message sent! I'll be in touch soon.";
-        } else {
-          // A16: Announce failure via live region instead of alert()
-          if (formStatus) formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
-        }
-      })
-      .catch(() => {
-        // A16: Announce network error via live region instead of alert()
-        if (formStatus) formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
-      })
-      .finally(() => {
-        if (submitBtn) submitBtn.disabled = false;
-        if (btnText) btnText.textContent = 'Send Message';
-      });
+    const btn = $('[type="submit"]', form);
+    const label = $('.btn__text', btn);
+    btn.disabled = true;
+    label.textContent = 'Sending';
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(res.status);
+      form.reset();
+      status.classList.add('ok');
+      status.textContent = "Message sent. I'll reply within 24 hours.";
+    } catch {
+      status.classList.add('err');
+      status.textContent = 'The message did not send. Try again, or email ade.enoch01@gmail.com.';
+    } finally {
+      btn.disabled = false;
+      label.textContent = 'Send message';
     }
   });
-};
+})();
 
-
-// =========================
-// PROJECT CARD IMAGE FALLBACK
-// =========================
-
-const initImageFallbacks = () => {
-  const images = $$('img');
-
-  // Generate gradient placeholder colors based on index
-  const gradients = [
-    'linear-gradient(135deg, #1c1c2e 0%, #16213e 100%)',
-    'linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%)',
-    'linear-gradient(135deg, #162032 0%, #1e3a4a 100%)',
-    'linear-gradient(135deg, #1f1f1f 0%, #2d2d2d 100%)',
-    'linear-gradient(135deg, #1a1212 0%, #2e1a1a 100%)',
-  ];
-
-  images.forEach((img, i) => {
-    img.addEventListener('error', () => {
-      img.style.background = gradients[i % gradients.length];
-      img.style.opacity = '0.7';
-      img.removeAttribute('src'); // prevent broken icon
-    });
-  });
-};
-
-
-// =========================
-// HERO SECTION PARALLAX (subtle)
-// A17: Gated behind prefers-reduced-motion check
-// =========================
-
-const initHeroParallax = () => {
-  // A17: Skip parallax if user prefers reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const glows = $$('.hero__glow');
-  if (!glows.length) return;
-
-  // Only on desktop
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-
-  document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 20;
-
-    glows[0].style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
-    if (glows[1]) glows[1].style.transform = `translate(${-x * 0.3}px, ${-y * 0.3}px)`;
-  });
-};
-
-
-// =========================
-// FOOTER CURRENT YEAR
-// =========================
-
-const initFooterYear = () => {
-  const yearEls = $$('.footer__year');
-  const currentYear = new Date().getFullYear();
-  yearEls.forEach((el) => {
-    el.textContent = currentYear;
-  });
-
-  // Also update copyright text if it has the year hardcoded
-  const bottomEl = $('.footer__bottom p');
-  if (bottomEl) {
-    bottomEl.textContent = bottomEl.textContent.replace(/\d{4}/, currentYear);
-  }
-};
-
-
-// =========================
-// SECTION ENTRANCE TIMING FIX
-// =========================
-
-/**
- * Ensures hero content animates in after preloader
- * by triggering hero .reveal elements with a slight delay
- */
-const initHeroEntrance = () => {
-  const heroReveals = $$('.hero .reveal');
-  if (!heroReveals.length) return;
-
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      heroReveals.forEach((el, i) => {
-        setTimeout(() => {
-          el.classList.add('visible');
-        }, 300 + i * 100);
-      });
-    }, 700); // aligned with reduced preloader cap
-  });
-};
-
-
-// =========================
-// MARQUEE PAUSE ON HOVER
-// =========================
-
-const initMarqueePause = () => {
-  const track = $('.marquee-track');
-  if (!track) return;
-
-  track.addEventListener('mouseenter', () => {
-    track.style.animationPlayState = 'paused';
-  });
-  track.addEventListener('mouseleave', () => {
-    track.style.animationPlayState = 'running';
-  });
-};
-
-
-// =========================
-// SERVICE CARD HOVER TILT (subtle)
-// A17: Gated behind prefers-reduced-motion check
-// =========================
-
-const initCardTilt = () => {
-  // A17: Skip tilt if user prefers reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const cards = $$('.service-card');
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-
-  cards.forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const midX = rect.width / 2;
-      const midY = rect.height / 2;
-      const rotateX = ((y - midY) / midY) * -3;
-      const rotateY = ((x - midX) / midX) * 3;
-
-      card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(4px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) translateZ(0)';
-    });
-  });
-};
-
-// A19: initKeyboardNav() removed — dots are now native <button> elements
-// that handle keyboard interaction natively without manual role/tabindex patches.
-
-
-// =========================
-// INIT ALL MODULES
-// =========================
-
-onReady(() => {
-  initPreloader();
-  initCursor();
-  initNavbar();
-  initMobileNav();
-  initActiveNavLinks();
-  initSmoothScroll();
-  initScrollReveal();
-  initHeroEntrance();
-  initCounters();
-  initTestimonialsSlider();
-  initBackToTop();
-  initContactForm();
-  initImageFallbacks();
-  initHeroParallax();
-  initFooterYear();
-  initMarqueePause();
-  initCardTilt();
-
-  console.log('✦ Portfolio loaded — Obaloluwa Enoch Adeleke');
+// ---- Image fallback ----
+$$('img').forEach((img) => {
+  const hide = () => { img.style.visibility = 'hidden'; };
+  if (img.complete && img.naturalWidth === 0 && img.currentSrc) hide();
+  else img.addEventListener('error', hide);
 });
+
+// ---- Footer year ----
+$('#year').textContent = new Date().getFullYear();
+
+// ---- Workflow pipeline: steps light up in order once ----
+(() => {
+  const flow = $('.flow');
+  if (!flow || reduceMotion || !('IntersectionObserver' in window)) return;
+  const steps = $$('li', flow);
+  const io = new IntersectionObserver((entries) => {
+    if (!entries[0].isIntersecting) return;
+    io.disconnect();
+    steps.forEach((li, i) => setTimeout(() => li.classList.add('lit'), 250 + i * 260));
+    setTimeout(() => steps.forEach((li) => { if (!li.classList.contains('flow__ai')) li.classList.remove('lit'); }), 250 + steps.length * 260 + 700);
+  }, { threshold: 0.6 });
+  io.observe(flow);
+})();

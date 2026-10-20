@@ -1,76 +1,41 @@
-# Obaloluwa Enoch Adeleke — Portfolio Website
+# Obaloluwa Adeleke: Portfolio
 
-## Project Structure
+Primary portfolio covering AI automation and brand & design work. Static HTML, CSS and JavaScript, hosted on GitHub Pages at https://obaloluwaadeleke.github.io/portfolio/
+
+The detailed automation case studies live on a separate site, https://obaloluwa-automates.vercel.app/, and the Work section links to them.
+
+## Structure
 
 ```
-/portfolio
-│
-├── index.html        → Main HTML structure
-├── style.css         → Complete CSS styling system
-├── script.js         → All JavaScript interactions
-│
-└── /media
-    ├── /profile
-    │   └── headshot.jpg          ← Add your profile photo here
-    │
-    ├── /projects
-    │   ├── webq.jpg              ← WebQ Solutions project image
-    │   ├── seokits.jpg           ← SEO Kits project image
-    │   ├── bams-energy.jpg       ← Bams Energy project image
-    │   ├── queuesigns.jpg        ← Queuesigns project image
-    │   └── bee-ileewa.jpg        ← Bee-Ileewa project image
-    │
-    ├── /certifications           ← Add cert images here
-    ├── /icons                    ← Custom icons if needed
-    └── /backgrounds              ← Background assets if needed
+index.html          Page content (all sections)
+style.css           Design tokens and styles (also used by 404.html)
+script.js           Nav, reveal, hero run log, work filter, contact form
+404.html            Not-found page
+site.webmanifest    PWA metadata
+media/profile/      headshot.jpg
+media/og-image.jpg  1200x630 link-preview image (og:image)
+media/projects/     Brand & design project images (bams-energy.jpg is currently unused)
 ```
 
----
+## Design system
 
-## Quick Setup
+- Light glass theme (palette B, emerald accent). Emerald `#0b7a5a` marks automation work; ink `#111111` marks brand & design work. Background `#f4f4f1`. The hero run log stays a dark terminal.
+- Type: Instrument Serif (display), Geist (body), Geist Mono (labels and logs).
+- Tokens live at the top of `style.css`.
 
-1. **Add your headshot** → Drop your photo into `media/profile/headshot.jpg`
-2. **Add project images** → Drop each project screenshot/mockup into `media/projects/`
-3. **Update contact details** → In `index.html`, find the Contact section and replace:
-   - Email: `hello@obaloluwaadeleke.com`
-   - Phone: `+234 800 000 0000`
-   - Social links: Update the `href="#"` anchors in the Contact and Footer sections
-4. **Connect your form** → In `script.js`, locate the `initContactForm()` function and replace the `setTimeout` simulation with your real form endpoint (Formspree, EmailJS, etc.)
-5. **Deploy** → Upload all files to your hosting (GitHub Pages, Netlify, Namecheap, etc.)
+## Run locally
 
----
-
-## Customization Quick Reference
-
-### Colors (in `style.css` — CSS Variables section)
-```css
---clr-accent: #c8a96e;     /* Gold accent — change to your brand color */
---clr-bg: #0a0a0a;          /* Page background */
---clr-white: #ffffff;        /* Primary text */
+```bash
+npx serve -l 5500 .
 ```
 
-### Fonts (in `style.css`)
-```css
---font-display: 'DM Serif Display', Georgia, serif;   /* Headings */
---font-sans:    'Syne', sans-serif;                    /* UI text */
---font-body:    'DM Sans', sans-serif;                 /* Body text */
-```
+## Editing content
 
-### Adding a New Project
-In `index.html`, copy any `<article class="project-card">` block and update:
-- `src="media/projects/your-image.jpg"`
-- Project title, category, year, description
+- **Add an automation project:** copy a `card--auto` article in `#work-grid` and set `data-track="auto"`.
+- **Add a brand project:** copy a `card--media` article, set `data-track="brand"`, and add the image under `media/projects/`.
+- **Add an automation testimonial:** see the `NEED` comment in the Testimonials section and use a `quote quote--auto` figure.
+- The contact form posts to Formspree (`action` in `index.html`).
 
-### Adding a New Testimonial
-Copy a `.testimonial-card` div block and update the content.
+## Open items
 
----
-
-## Tech Stack
-- **HTML5** — Semantic structure
-- **CSS3** — Grid, Flexbox, CSS variables, animations
-- **Vanilla JavaScript** — Zero dependencies
-
----
-
-Built by Obaloluwa Enoch Adeleke · Lagos, Nigeria
+- Add real automation client testimonials.
