@@ -13,6 +13,7 @@ script.js           Nav, reveal, hero run log, work filter, contact form
 404.html            Not-found page
 site.webmanifest    PWA metadata
 media/profile/      headshot.jpg
+media/og-image.jpg  1200x630 link-preview image (og:image)
 media/projects/     Brand & design project images (bams-energy.jpg is currently unused)
 ```
 
@@ -37,5 +38,4 @@ npx serve -l 5500 .
 
 ## Open items
 
-- Add a 1200x630 `og-image.jpg` and an `og:image` meta tag for link previews.
 - Add real automation client testimonials.
