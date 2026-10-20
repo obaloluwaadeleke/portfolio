@@ -1,11 +1,11 @@
 {
-  "name": "Obaloluwa Adeleke Portfolio",
-  "short_name": "OBA Portfolio",
+  "name": "Obaloluwa Adeleke | AI Automation Specialist & Brand Designer",
+  "short_name": "Oba Portfolio",
   "icons": [
-    { "src": "/portfolio/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
   ],
-  "theme_color": "#0a0a0a",
-  "background_color": "#0a0a0a",
+  "theme_color": "#f4f4f1",
+  "background_color": "#f4f4f1",
   "display": "standalone",
-  "start_url": "/portfolio/"
+  "start_url": "./"
 }
