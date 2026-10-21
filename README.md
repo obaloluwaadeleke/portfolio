@@ -11,7 +11,6 @@ index.html          Page content (all sections)
 style.css           Design tokens and styles (also used by 404.html)
 script.js           Nav, reveal, hero run log, work filter, contact form
 404.html            Not-found page
-site.webmanifest    PWA metadata
 media/profile/      headshot.jpg
 media/og-image.jpg  1200x630 link-preview image (og:image)
 media/projects/     Brand & design project images (bams-energy.jpg is currently unused)
@@ -33,9 +32,10 @@ npx serve -l 5500 .
 
 - **Add an automation project:** copy a `card--auto` article in `#work-grid` and set `data-track="auto"`.
 - **Add a brand project:** copy a `card--media` article, set `data-track="brand"`, and add the image under `media/projects/`.
-- **Add an automation testimonial:** see the `NEED` comment in the Testimonials section and use a `quote quote--auto` figure.
+- **Add a testimonial:** copy a `figure.slide` inside `#slider-viewport` (use `quote--auto` for automation clients). The slider picks it up automatically.
 - The contact form posts to Formspree (`action` in `index.html`).
 
 ## Open items
 
-- Add real automation client testimonials.
+- Add the role/company for Toluwanimi Akinyemi's testimonial.
+- Add more real automation client testimonials.
