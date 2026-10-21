@@ -87,11 +87,11 @@ toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduce
       en.target.classList.add('visible');
       io.unobserve(en.target);
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
   els.forEach((el, i) => {
     // stagger siblings that enter together, capped so late items never wait
     const idx = $$(':scope > .reveal', el.parentElement).indexOf(el);
-    el.style.transitionDelay = `${Math.min(Math.max(idx, 0), 4) * 70}ms`;
+    el.style.transitionDelay = `${Math.min(Math.max(idx, 0), 4) * 120}ms`;
     io.observe(el);
   });
 })();
@@ -312,4 +312,79 @@ $('#year').textContent = new Date().getFullYear();
     setTimeout(() => steps.forEach((li) => { if (!li.classList.contains('flow__ai')) li.classList.remove('lit'); }), 250 + steps.length * 260 + 700);
   }, { threshold: 0.6 });
   io.observe(flow);
+})();
+
+// ---- Testimonial slider: one at a time, in sequence ----
+(() => {
+  const root = $('#slider');
+  if (!root) return;
+  const slides = $$('.slide', root);
+  const dotsEl = $('#slider-dots');
+  const toggle = $('#slider-toggle');
+  const DELAY = 8000;
+  let index = 0;
+  let timer = null;
+  let userPaused = reduceMotion;   // autoplay is off by default for reduced motion
+  let hovering = false;
+  let visible = false;
+
+  const dots = slides.map((_, n) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'slider__dot';
+    b.setAttribute('aria-label', `Show testimonial ${n + 1} of ${slides.length}`);
+    b.addEventListener('click', () => show(n));
+    dotsEl.append(b);
+    return b;
+  });
+
+  const show = (n) => {
+    index = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => {
+      const on = k === index;
+      s.classList.toggle('is-active', on);
+      s.setAttribute('aria-hidden', String(!on));
+      s.inert = !on;
+    });
+    dots.forEach((d, k) => d.setAttribute('aria-current', String(k === index)));
+    if (timer) restart();
+  };
+
+  const stop = () => { clearInterval(timer); timer = null; };
+  const restart = () => { stop(); timer = setInterval(() => show(index + 1), DELAY); };
+  const sync = () => { if (!userPaused && !hovering && visible) { if (!timer) restart(); } else stop(); };
+
+  const setToggle = () => {
+    toggle.textContent = userPaused ? 'Play' : 'Pause';
+    toggle.setAttribute('aria-label', userPaused ? 'Start automatic slide change' : 'Pause automatic slide change');
+  };
+
+  $('#slider-prev').addEventListener('click', () => show(index - 1));
+  $('#slider-next').addEventListener('click', () => show(index + 1));
+  toggle.addEventListener('click', () => { userPaused = !userPaused; setToggle(); sync(); });
+  root.addEventListener('mouseenter', () => { hovering = true; sync(); });
+  root.addEventListener('mouseleave', () => { hovering = false; sync(); });
+  root.addEventListener('focusin', () => { hovering = true; sync(); });
+  root.addEventListener('focusout', () => { hovering = false; sync(); });
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+
+  let startX = 0;
+  root.addEventListener('touchstart', (e) => { startX = e.changedTouches[0].clientX; }, { passive: true });
+  root.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+  });
+
+  // only run the timer while the slider is on screen
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((en) => { visible = en[0].isIntersecting; sync(); }, { threshold: 0.3 }).observe(root);
+  } else {
+    visible = true;
+  }
+
+  setToggle();
+  show(0);
 })();
